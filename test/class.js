@@ -68,4 +68,41 @@ describe("Class", function () {
         expect(c2.prop1).to.equal("override");
     });
 
+    it("calls it constructor only when instanciated", function () {
+        var Cls1 = Class.$extend({
+            __init__: function () {
+                this.ok = true;
+            }
+        });
+
+        var Cls2 = Cls1.$extend();
+
+        var Cls3 = Cls1.$extend({
+            __init__: function () {
+            }
+        });
+
+        var c1 = new Cls1();
+        var c2 = new Cls2();
+        var c3 = new Cls3();
+
+        expect(c1.ok).to.be.ok();
+        expect(c2.ok).to.be.ok();
+        expect(c3.ok).not.to.be.ok();
+    });
+
+    it("can pass arguments to its constructor", function () {
+        var Cls1 = Class.$extend({
+            __init__: function (param1, param2) {
+                this.param1 = param1;
+                this.param2 = param2;
+            }
+        });
+
+        var c1 = new Cls1("a", "b");
+
+        expect(c1.param1).to.equal("a");
+        expect(c1.param2).to.equal("b");
+    });
+
 });
