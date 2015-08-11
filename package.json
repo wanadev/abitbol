@@ -1,0 +1,23 @@
+{
+  "name": "abitbol",
+  "version": "0.0.0",
+  "description": "The classiest javascript class library of the world",
+  "main": "src/abitbol.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "class",
+    "classy"
+  ],
+  "author": "Wanadev <http://www.wanadev.fr/>",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-jscs": "^2.0.0",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.2.5"
+  }
+}
