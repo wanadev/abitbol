@@ -11,7 +11,7 @@ var Class = function () {};
 Class.$class = Class;
 
 Class.$extend = function (properties) {
-    var _superPrototype = this.prototype;
+    var _superClass = this;
 
     var __class__ = function () {
         if (_disableConstructor) {
@@ -26,7 +26,18 @@ Class.$extend = function (properties) {
     __class__.prototype = inherit(this.$class);
 
     for (var property in properties || {}) {
-        __class__.prototype[property] = properties[property];
+        if (typeof properties[property] == "function") {
+            __class__.prototype[property] = (function (propertyName, method) {
+                return function () {
+                    this.$class = __class__;
+                    this.$super = _superClass.prototype[propertyName];
+                    this.$name = propertyName;
+                    return method.apply(this, arguments);
+                };
+            })(property, properties[property]);  // jshint ignore:line
+        } else {
+            __class__.prototype[property] = properties[property];
+        }
     }
 
     __class__.$class = __class__;

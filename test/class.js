@@ -105,4 +105,64 @@ describe("Class", function () {
         expect(c1.param2).to.equal("b");
     });
 
+    it("methods can access to their own class", function () {
+        var Cls1 = Class.$extend({
+            meth1: function () {
+                return this.$class;
+            }
+        });
+
+        var c1 = new Cls1();
+
+        expect(c1.meth1()).to.be(Cls1.$class);
+    });
+
+    it("methods can access to their own name", function () {
+        var Cls1 = Class.$extend({
+            meth1: function () {
+                return this.$name;
+            }
+        });
+
+        var c1 = new Cls1();
+
+        expect(c1.meth1()).to.equal("meth1");
+    });
+
+    it("methods can call their parent method", function () {
+        var Cls1 = Class.$extend({
+            meth1: function (param1, param2) {
+                this.param1 = param1;
+                this.param2 = param2;
+            }
+        });
+
+        var Cls2 = Cls1.$extend({
+            meth1: function (param1, param2) {
+                this.$super(param2, param1);
+            }
+        });
+
+        var Cls3 = Cls1.$extend({
+            meth1: function () {}
+        });
+
+        var c1 = new Cls1();
+        var c2 = new Cls2();
+        var c3 = new Cls3();
+
+        c1.meth1("a", "b");
+        c2.meth1("a", "b");
+        c3.meth1("a", "b");
+
+        expect(c1.param1).to.equal("a");
+        expect(c1.param2).to.equal("b");
+
+        expect(c2.param1).to.equal("b");
+        expect(c2.param2).to.equal("a");
+
+        expect(c3.param1).to.be(undefined);
+        expect(c3.param2).to.be(undefined);
+    });
+
 });
