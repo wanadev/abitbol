@@ -46,4 +46,4 @@ Class.$extend = function (properties) {
     return __class__;
 };
 
-module.exports =  Class;
+module.exports = Class;
