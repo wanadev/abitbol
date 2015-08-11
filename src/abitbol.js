@@ -8,7 +8,6 @@ function inherit(superClass) {
 }
 
 var Class = function () {};
-
 Class.$class = Class;
 
 Class.$extend = function (properties) {
@@ -25,6 +24,10 @@ Class.$extend = function (properties) {
     };
 
     __class__.prototype = inherit(this.$class);
+
+    for (var property in properties || {}) {
+        __class__.prototype[property] = properties[property];
+    }
 
     __class__.$class = __class__;
     __class__.$extend = Class.$extend;
