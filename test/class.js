@@ -22,6 +22,20 @@ describe("Class", function () {
             expect(c1).to.be.an(Cls1.$class);
         });
 
+        it("stay clean (no trash properties)", function () {
+            var Cls1 = Class.$extend({
+                meth1: function () {
+                    // Here we can access to this.$super() and this.$name
+                }
+            });
+
+            var c1 = new Cls1();
+            c1.meth1();
+
+            expect(Object.getOwnPropertyNames(c1)).not.to.contain("$super");
+            expect(Object.getOwnPropertyNames(c1)).not.to.contain("$name");
+        });
+
     });
 
     describe("inheritance", function () {

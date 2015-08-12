@@ -32,7 +32,12 @@ Class.$extend = function (properties) {
                 return function () {
                     this.$super = _superClass.prototype[propertyName];
                     this.$name = propertyName;
-                    return method.apply(this, arguments);
+                    try {
+                        return method.apply(this, arguments);
+                    } finally {
+                        delete this.$super;
+                        delete this.$name;
+                    }
                 };
             })(property, properties[property]);  // jshint ignore:line
         } else {
