@@ -17,10 +17,19 @@ Object.defineProperty(Class, "$class", {
     value: Class
 });
 
+Object.defineProperty(Class, "$map", {
+    enumerable: false,
+    value: {
+        attributes: [],
+        methods: []
+    }
+});
+
 Object.defineProperty(Class, "$extend", {
     enumerable: false,
     value: function (properties) {
         var _superClass = this;
+        var _classMap = JSON.parse(JSON.stringify(_superClass.$map));  // not pretty :s
 
         // New class
         var __class__ = function () {
@@ -33,6 +42,10 @@ Object.defineProperty(Class, "$extend", {
             Object.defineProperty(this, "$class", {
                 enumerable: false,
                 value: __class__
+            });
+            Object.defineProperty(this, "$map", {
+                enumerable: false,
+                value: _classMap
             });
             return this;
         };
@@ -61,6 +74,7 @@ Object.defineProperty(Class, "$extend", {
                 continue;
             }
             if (typeof properties[property] == "function") {
+                _classMap.methods.push(property);
                 __class__.prototype[property] = (function (propertyName, method) {
                     return function () {
                         this.$super = _superClass.prototype[propertyName];
@@ -74,6 +88,7 @@ Object.defineProperty(Class, "$extend", {
                     };
                 })(property, properties[property]);  // jshint ignore:line
             } else {
+                _classMap.attributes.push(property);
                 __class__.prototype[property] = properties[property];
             }
         }
@@ -83,7 +98,7 @@ Object.defineProperty(Class, "$extend", {
         // Removes caller, callee and arguments from the list (strict mode)
         // Removes non enumerable Abitbol properties too
         scStaticProps = scStaticProps.filter(function (value) {
-            return (["caller", "callee", "arguments", "$class", "$extend"].indexOf(value) == -1);
+            return (["caller", "callee", "arguments", "$class", "$extend", "$map"].indexOf(value) == -1);
         });
         for (i = 0 ; i < scStaticProps.length ; i++) {
             if (__class__[scStaticProps[i]] === undefined) {
@@ -106,6 +121,10 @@ Object.defineProperty(Class, "$extend", {
         Object.defineProperty(__class__, "$extend", {
             enumerable: false,
             value: Class.$extend
+        });
+        Object.defineProperty(__class__, "$map", {
+            enumerable: false,
+            value: _classMap
         });
 
         return __class__;

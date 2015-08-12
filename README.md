@@ -130,6 +130,17 @@ From a method: invokes the corresponding super class method.
 
 From a method: the current method's name.
 
+#### `Class.$map` / `this.$map`
+
+An object that contains the class' map (list of methods, attributes,...).
+
+```javascript
+{
+    attributes: [],
+    methods: []
+}
+```
+
 #### `Class.__init__()`
 
 The constructor method.

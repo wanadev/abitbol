@@ -22,6 +22,10 @@ Object.defineProperty(Class, "$extend", {
     enumerable: false,
     value: function (properties) {
         var _superClass = this;
+        var _classMap = {
+            attributes: [],
+            methods: []
+        };
 
         // New class
         var __class__ = function () {
@@ -34,6 +38,10 @@ Object.defineProperty(Class, "$extend", {
             Object.defineProperty(this, "$class", {
                 enumerable: false,
                 value: __class__
+            });
+            Object.defineProperty(this, "$properties", {
+                enumerable: false,
+                value: _classMap
             });
             return this;
         };
@@ -62,6 +70,7 @@ Object.defineProperty(Class, "$extend", {
                 continue;
             }
             if (typeof properties[property] == "function") {
+                _classMap.methods.push(property);
                 __class__.prototype[property] = (function (propertyName, method) {
                     return function () {
                         this.$super = _superClass.prototype[propertyName];
@@ -75,6 +84,7 @@ Object.defineProperty(Class, "$extend", {
                     };
                 })(property, properties[property]);  // jshint ignore:line
             } else {
+                _classMap.attributes.push(property);
                 __class__.prototype[property] = properties[property];
             }
         }

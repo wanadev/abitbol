@@ -45,6 +45,25 @@ describe("Class", function () {
             expect(c1.__classvars__).to.be(undefined);
         });
 
+        it("special properties are not enumerable", function () {
+            var Cls1 = Class.$extend();
+
+            var c1 = new Cls1();
+
+            var p;
+            for (p in Cls1) {
+                expect(p).not.to.equal("$class");
+                expect(p).not.to.equal("$extend");
+                expect(p).not.to.equal("$map");
+            }
+
+            for (p in c1) {
+                expect(p).not.to.equal("$class");
+                expect(p).not.to.equal("$extend");
+                expect(p).not.to.equal("$map");
+            }
+        });
+
     });
 
     describe("inheritance", function () {
@@ -307,6 +326,100 @@ describe("Class", function () {
             var c2 = new Cls2();
 
             expect(Cls2.static1).to.equal("static2");
+        });
+
+    });
+
+    describe("map", function () {
+
+        it("is defined with right sections", function () {
+            var Cls1 = Class.$extend();
+
+            expect(Cls1.$map).not.to.be(undefined);
+            expect(Cls1.$map.attributes).not.to.be(undefined);
+            expect(Cls1.$map.methods).not.to.be(undefined);
+
+            var c1 = new Cls1();
+
+            expect(c1.$map).not.to.be(undefined);
+            expect(c1.$map.attributes).not.to.be(undefined);
+            expect(c1.$map.methods).not.to.be(undefined);
+        });
+
+        it("contains attributes", function () {
+            var Cls1 = Class.$extend({
+                attr1: "a"
+            });
+
+            expect(Cls1.$map.attributes.length).to.equal(1);
+            expect(Cls1.$map.attributes).to.contain("attr1");
+            expect(Cls1.$map.methods.length).to.equal(0);
+
+            var c1 = new Cls1();
+
+            expect(c1.$map.attributes.length).to.equal(1);
+            expect(c1.$map.attributes).to.contain("attr1");
+            expect(c1.$map.methods.length).to.equal(0);
+        });
+
+        it("contains methods", function () {
+            var Cls1 = Class.$extend({
+                meth1: function () {}
+            });
+
+            expect(Cls1.$map.methods.length).to.equal(1);
+            expect(Cls1.$map.methods).to.contain("meth1");
+            expect(Cls1.$map.attributes.length).to.equal(0);
+
+            var c1 = new Cls1();
+
+            expect(c1.$map.methods.length).to.equal(1);
+            expect(c1.$map.methods).to.contain("meth1");
+            expect(c1.$map.attributes.length).to.equal(0);
+        });
+
+        it("contains inherited attributes", function () {
+            var Cls1 = Class.$extend({
+                attr1: "a"
+            });
+
+            var Cls2 = Cls1.$extend({
+                attr2: "b"
+            });
+
+            expect(Cls2.$map.attributes.length).to.equal(2);
+            expect(Cls2.$map.attributes).to.contain("attr1");
+            expect(Cls2.$map.attributes).to.contain("attr2");
+            expect(Cls2.$map.methods.length).to.equal(0);
+
+            var c2 = new Cls2();
+
+            expect(c2.$map.attributes.length).to.equal(2);
+            expect(c2.$map.attributes).to.contain("attr1");
+            expect(c2.$map.attributes).to.contain("attr2");
+            expect(c2.$map.methods.length).to.equal(0);
+        });
+
+        it("contains inherited methods", function () {
+            var Cls1 = Class.$extend({
+                meth1: function () {}
+            });
+
+            var Cls2 = Cls1.$extend({
+                meth2: function () {}
+            });
+
+            expect(Cls2.$map.methods.length).to.equal(2);
+            expect(Cls2.$map.methods).to.contain("meth1");
+            expect(Cls2.$map.methods).to.contain("meth2");
+            expect(Cls2.$map.attributes.length).to.equal(0);
+
+            var c2 = new Cls2();
+
+            expect(c2.$map.methods.length).to.equal(2);
+            expect(c2.$map.methods).to.contain("meth1");
+            expect(c2.$map.methods).to.contain("meth2");
+            expect(c2.$map.attributes.length).to.equal(0);
         });
 
     });
