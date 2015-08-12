@@ -13,7 +13,7 @@ Built-in functionalities:
 * Simple way to call a super class method
 * Simple way to declare static properties
 * Handful mixin
-* ~~Getters and setters~~ TODO
+* Computed properties generated from getters and setters
 
 > The classiest javascript class library of the world  
 > -- George Abitbol
@@ -109,6 +109,66 @@ mustang.horn();
 
 var myTruck = new Truck("blue");
 myTruck instanceof Car  // true
+```
+
+
+### Computed Properties (Getters and Setters)
+
+Abitbol allows you to creates computed properties simply by defining getters and setters:
+
+```javascript
+var Person = Class.$extend({
+
+    // This will create the Person.fullName property
+    
+    getFullName: function () {
+        return this.$data.fullName;
+    },
+    
+    setFullName: function (value) {
+        this.$data.fullName = value;
+    },
+    
+    // This will create the Person.age property
+    
+    getAge: function () {
+        return this.$data.age;
+    },
+    
+    setAge: function (value) {
+        this.$data.age = value;
+    },
+    
+    // This will create the read-only Person.old property
+    
+    isOld: function () {
+        return (this.age > 75);
+    },
+    
+    // This will create the read-only Person.woodenLeg property
+    
+    hasWoodenLeg: function () {
+        return (this.fullName == "Long John Silver");
+    }
+})
+```
+
+and playing with those properties is straightforward:
+
+```javascript
+var george = new Person();
+
+george.fullName = "George Abitbol";
+george.age = 50;
+
+console.log(george.fullName);       // "George Abitbol"
+console.log(george.getFullName());  // "George Abitbol"
+console.log(george.old);            // false
+console.log(george.isOld());        // false
+
+george.setAge(80);
+
+console.log(george.old);            // true
 ```
 
 

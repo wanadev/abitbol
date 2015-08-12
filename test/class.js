@@ -55,13 +55,23 @@ describe("Class", function () {
                 expect(p).not.to.equal("$class");
                 expect(p).not.to.equal("$extend");
                 expect(p).not.to.equal("$map");
+                expect(p).not.to.equal("$data");
             }
 
             for (p in c1) {
                 expect(p).not.to.equal("$class");
                 expect(p).not.to.equal("$extend");
                 expect(p).not.to.equal("$map");
+                expect(p).not.to.equal("$data");
             }
+        });
+
+        it("provides a $data object to store private values", function () {
+            var Cls1 = Class.$extend();
+
+            var c1 = new Cls1();
+
+            expect(c1.$data).to.be.an(Object);
         });
 
     });
@@ -464,6 +474,50 @@ describe("Class", function () {
             expect(Cls1.$map.computedProperties.prop5.set).to.be(undefined);
         });
 
+    });
+
+    describe("accessors and mutators", function () {
+
+        it("generates computed properties", function () {
+            var Cls1 = Class.$extend({
+                getProp1: function () {
+                    return "prop1";
+                }
+            });
+
+            var c1 = new Cls1();
+
+            expect(c1.prop1).not.to.be(undefined);
+            expect(c1.prop1).to.equal("prop1");
+        });
+
+        it("are used to manipulate computed properties", function () {
+            var Cls1 = Class.$extend({
+                __init__: function () {
+                    this.prop1 = "a";
+                },
+
+                getProp1: function () {
+                    return "get" + this.$data.prop1;
+                },
+
+                setProp1: function (value) {
+                    this.$data.prop1 = "set" + value;
+                }
+            });
+
+            var c1 = new Cls1();
+
+            expect(c1.prop1).not.to.be(undefined);
+
+            expect(c1.$data.prop1).to.equal("seta");
+            expect(c1.prop1).to.equal("getseta");
+
+            c1.prop1 = "b";
+
+            expect(c1.$data.prop1).to.equal("setb");
+            expect(c1.prop1).to.equal("getsetb");
+        });
     });
 
 });

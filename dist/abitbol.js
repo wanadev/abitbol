@@ -22,7 +22,8 @@ Object.defineProperty(Class, "$map", {
     enumerable: false,
     value: {
         attributes: [],
-        methods: []
+        methods: [],
+        computedProperties: {}
     }
 });
 
@@ -37,9 +38,6 @@ Object.defineProperty(Class, "$extend", {
             if (_disableConstructor) {
                 return;
             }
-            if (this.__init__) {
-                this.__init__.apply(this, arguments);
-            }
             Object.defineProperty(this, "$class", {
                 enumerable: false,
                 value: __class__
@@ -48,6 +46,21 @@ Object.defineProperty(Class, "$extend", {
                 enumerable: false,
                 value: _classMap
             });
+            Object.defineProperty(this, "$data", {
+                enumerable: false,
+                value: {}
+            });
+            for (var property in _classMap.computedProperties) {
+                Object.defineProperty(this, property, {
+                    enumerable: true,
+                    configurable: false,
+                    get: this[_classMap.computedProperties[property].get],
+                    set: this[_classMap.computedProperties[property].set]
+                });
+            }
+            if (this.__init__) {
+                this.__init__.apply(this, arguments);
+            }
             return this;
         };
 
@@ -80,6 +93,28 @@ Object.defineProperty(Class, "$extend", {
                 // Accessors / Mutators
                 if (property.indexOf("get") === 0) {
                     computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
+                    if (!_classMap.computedProperties[computedPropertyName]) {
+                        _classMap.computedProperties[computedPropertyName] = {};
+                    }
+                    _classMap.computedProperties[computedPropertyName].get = property;
+                } else if (property.indexOf("set") === 0) {
+                    computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
+                    if (!_classMap.computedProperties[computedPropertyName]) {
+                        _classMap.computedProperties[computedPropertyName] = {};
+                    }
+                    _classMap.computedProperties[computedPropertyName].set = property;
+                } else if (property.indexOf("has") === 0) {
+                    computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
+                    if (!_classMap.computedProperties[computedPropertyName]) {
+                        _classMap.computedProperties[computedPropertyName] = {};
+                    }
+                    _classMap.computedProperties[computedPropertyName].get = property;
+                } else if (property.indexOf("is") === 0) {
+                    computedPropertyName = property.slice(2, 3).toLowerCase() + property.slice(3, property.length);
+                    if (!_classMap.computedProperties[computedPropertyName]) {
+                        _classMap.computedProperties[computedPropertyName] = {};
+                    }
+                    _classMap.computedProperties[computedPropertyName].get = property;
                 }
                 //
                 __class__.prototype[property] = (function (propertyName, method) {

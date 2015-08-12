@@ -37,9 +37,6 @@ Object.defineProperty(Class, "$extend", {
             if (_disableConstructor) {
                 return;
             }
-            if (this.__init__) {
-                this.__init__.apply(this, arguments);
-            }
             Object.defineProperty(this, "$class", {
                 enumerable: false,
                 value: __class__
@@ -48,6 +45,21 @@ Object.defineProperty(Class, "$extend", {
                 enumerable: false,
                 value: _classMap
             });
+            Object.defineProperty(this, "$data", {
+                enumerable: false,
+                value: {}
+            });
+            for (var property in _classMap.computedProperties) {
+                Object.defineProperty(this, property, {
+                    enumerable: true,
+                    configurable: false,
+                    get: this[_classMap.computedProperties[property].get],
+                    set: this[_classMap.computedProperties[property].set]
+                });
+            }
+            if (this.__init__) {
+                this.__init__.apply(this, arguments);
+            }
             return this;
         };
 
