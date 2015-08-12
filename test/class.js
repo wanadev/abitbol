@@ -24,6 +24,10 @@ describe("Class", function () {
 
         it("stay clean (no trash properties)", function () {
             var Cls1 = Class.$extend({
+
+                __include__: [],
+                __classvars__: {},
+
                 meth1: function () {
                     // Here we can access to this.$super() and this.$name
                 }
@@ -34,6 +38,11 @@ describe("Class", function () {
 
             expect(Object.getOwnPropertyNames(c1)).not.to.contain("$super");
             expect(Object.getOwnPropertyNames(c1)).not.to.contain("$name");
+
+            expect(Cls1.prototype.__include__).to.be(undefined);
+            expect(Cls1.prototype.__classvars__).to.be(undefined);
+            expect(c1.__include__).to.be(undefined);
+            expect(c1.__classvars__).to.be(undefined);
         });
 
     });
@@ -246,6 +255,58 @@ describe("Class", function () {
             });
 
             expect(Cls1.prototype.attr1).to.equal("inc2");
+        });
+
+    });
+
+    describe("static properties", function () {
+
+        it("can be added to the class", function () {
+            var Cls1 = Class.$extend({
+                __classvars__: {
+                    static1: "static1"
+                }
+            });
+
+            var c1 = new Cls1();
+
+            expect(Cls1.static1).to.equal("static1");
+            expect(Cls1.prototype.static1).to.be(undefined);
+            expect(c1.static1).to.be(undefined);
+        });
+
+        it("can be inherited", function () {
+            var Cls1 = Class.$extend({
+                __classvars__: {
+                    static1: "static1"
+                }
+            });
+
+            var Cls2 = Cls1.$extend();
+
+            var c2 = new Cls2();
+
+            expect(Cls2.static1).to.equal("static1");
+            expect(Cls2.prototype.static1).to.be(undefined);
+            expect(c2.static1).to.be(undefined);
+        });
+
+        it("can be overridden", function () {
+            var Cls1 = Class.$extend({
+                __classvars__: {
+                    static1: "static1"
+                }
+            });
+
+            var Cls2 = Cls1.$extend({
+                __classvars__: {
+                    static1: "static2"
+                }
+            });
+
+            var c2 = new Cls2();
+
+            expect(Cls2.static1).to.equal("static2");
         });
 
     });

@@ -1,9 +1,11 @@
+"use strict";
+
 var _disableConstructor = false;
 
 // Inherit from a class without calling its constructor.
-function inherit(superClass) {
+function inherit(SuperClass) {
     _disableConstructor = true;
-    var __class__ = new superClass();
+    var __class__ = new SuperClass();
     _disableConstructor = false;
     return __class__;
 }
@@ -46,7 +48,7 @@ Class.$extend = function (properties) {
 
     // Add properties
     for (property in properties || {}) {
-        if (property == "__include__") {
+        if (property == "__include__" || property == "__classvars__") {
             continue;
         }
         if (typeof properties[property] == "function") {
@@ -68,10 +70,23 @@ Class.$extend = function (properties) {
     }
 
     // Copy super class static properties
-    // TODO
+    var scStaticProps = Object.getOwnPropertyNames(_superClass);
+    // Removes caller, callee and arguments from the list (strict mode)
+    scStaticProps = scStaticProps.filter(function (value) {
+        return (["caller", "callee", "arguments"].indexOf(value) == -1);
+    });
+    for (i = 0 ; i < scStaticProps.length ; i++) {
+        if (__class__[scStaticProps[i]] === undefined) {
+            __class__[scStaticProps[i]] = _superClass[scStaticProps[i]];
+        }
+    }
 
     // Add static properties
-    // TODO
+    if (properties.__classvars__) {
+        for (property in properties.__classvars__) {
+            __class__[property] = properties.__classvars__[property];
+        }
+    }
 
     // Add abitbol static properties
     __class__.$class = __class__;

@@ -11,7 +11,7 @@ Built-in functionalities:
 
 * Simple inheritance
 * Simple way to call a super class method
-* ~~Simple way to declare static properties~~ TODO
+* Simple way to declare static properties
 * Handful mixin
 * ~~Getters and setters~~ TODO
 
@@ -29,7 +29,7 @@ TODO
 ## Defining Classes
 
 ```javascript
-var Vehicle = Class.$extend({
+var Vehicle = abitbol.Class.$extend({
     __init__: function (color) {
         this.color = color;
         this.speed = 0;
@@ -112,7 +112,7 @@ The constructor method.
 
 ### `Class.__include__`
 
-A list of objects that contains properties to mix in the Class.
+A list of objects that contains properties to mix in the class.
 
 ```javascript
 
@@ -123,6 +123,19 @@ var Boat = Vehicle.$extend({
     
     navigate: function (speed) {
         this.move(speed);
+    }
+});
+```
+
+### `Class.__classvars__`
+
+An object containing static properties of the class.
+
+```javascript
+var MyClass = abitbol.Class.$extend({
+    __classvars__: {
+        staticAttribute: "value",
+        staticMethod: function () {}
     }
 });
 ```
