@@ -12,7 +12,7 @@ Built-in functionalities:
 * Simple inheritance
 * Simple way to call a super class method
 * ~~Simple way to declare static properties~~ TODO
-* ~~Handful mixin~~ TODO
+* Handful mixin
 * ~~Getters and setters~~ TODO
 
 > The classiest javascript class library of the world  
@@ -109,6 +109,23 @@ From a method: the current method's name.
 ### `Class.__init__()`
 
 The constructor method.
+
+### `Class.__include__`
+
+A list of objects that contains properties to mix in the Class.
+
+```javascript
+
+var Boat = Vehicle.$extend({
+    __include__: [{
+        horn: Truck.prototype.horn
+    }],
+    
+    navigate: function (speed) {
+        this.move(speed);
+    }
+});
+```
 
 
 [Classy]: https://github.com/mitsuhiko/classy

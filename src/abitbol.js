@@ -1,5 +1,6 @@
 var _disableConstructor = false;
 
+// Inherit from a class without calling its constructor.
 function inherit(superClass) {
     _disableConstructor = true;
     var __class__ = new superClass();
@@ -13,6 +14,7 @@ Class.$class = Class;
 Class.$extend = function (properties) {
     var _superClass = this;
 
+    // New class
     var __class__ = function () {
         if (_disableConstructor) {
             return;
@@ -24,9 +26,29 @@ Class.$extend = function (properties) {
         return this;
     };
 
+    // Inheritance
     __class__.prototype = inherit(this.$class);
 
-    for (var property in properties || {}) {
+    properties = properties || {};
+    var property;
+    var i;
+
+    // Copy properties from mixins
+    if (properties.__include__) {
+        for (i = properties.__include__.length - 1 ; i >= 0 ; i--) {
+            for (property in properties.__include__[i]) {
+                if (properties[property] === undefined) {
+                    properties[property] = properties.__include__[i][property];
+                }
+            }
+        }
+    }
+
+    // Add properties
+    for (property in properties || {}) {
+        if (property == "__include__") {
+            continue;
+        }
         if (typeof properties[property] == "function") {
             __class__.prototype[property] = (function (propertyName, method) {
                 return function () {
@@ -45,6 +67,13 @@ Class.$extend = function (properties) {
         }
     }
 
+    // Copy super class static properties
+    // TODO
+
+    // Add static properties
+    // TODO
+
+    // Add abitbol static properties
     __class__.$class = __class__;
     __class__.$extend = Class.$extend;
 

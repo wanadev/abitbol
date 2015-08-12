@@ -203,4 +203,51 @@ describe("Class", function () {
 
     });
 
+    describe("mixins", function () {
+
+        it("can include properties", function () {
+            var Cls1 = Class.$extend({
+                __include__: [
+                    {
+                        meth1: function () {},
+                        attr1: "foo"
+                    }
+                ]
+            });
+
+            expect(Cls1.prototype.meth1).not.to.be(undefined);
+            expect(Cls1.prototype.attr1).to.equal("foo");
+        });
+
+        it("included properties cannot override given properties", function () {
+            var Cls1 = Class.$extend({
+                __include__: [
+                    {
+                        attr1: "inc"
+                    }
+                ],
+
+                attr1: "prop"
+            });
+
+            expect(Cls1.prototype.attr1).to.equal("prop");
+        });
+
+        it("copies only the latest included property if there is conflicts", function () {
+            var Cls1 = Class.$extend({
+                __include__: [
+                    {
+                        attr1: "inc1"
+                    },
+                    {
+                        attr1: "inc2"
+                    }
+                ]
+            });
+
+            expect(Cls1.prototype.attr1).to.equal("inc2");
+        });
+
+    });
+
 });
