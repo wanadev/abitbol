@@ -219,6 +219,10 @@ An object that contains the class' map (list of methods, attributes,...).
 }
 ```
 
+#### `this.$data`
+
+An object to store ~~private~~ internal properties (to store computed properties' values for example).
+
 #### `Class.__init__()`
 
 The constructor method.
