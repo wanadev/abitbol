@@ -31,14 +31,37 @@ module.exports = function(grunt) {
             test: {
                 src: ["test/**/*.js"]
             }
+        },
+
+        browserify: {
+            dist: {
+                files: {
+                    "dist/<%= pkg.name %>.js": ["<%= pkg.main %>"]
+                },
+                options: {
+                    browserifyOptions: {
+                        "standalone": "Class"
+                    }
+                }
+            }
+        },
+
+        uglify: {
+            dist: {
+                files: {
+                    "dist/<%= pkg.name %>.min.js": "dist/<%= pkg.name %>.js"
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks("grunt-jscs");
     grunt.loadNpmTasks("grunt-mocha-test");
+    grunt.loadNpmTasks("grunt-browserify");
+    grunt.loadNpmTasks("grunt-contrib-uglify");
 
-    grunt.registerTask("default", ["test"]);
+    grunt.registerTask("default", ["browserify:dist", "uglify:dist"]);
     grunt.registerTask("test", ["jshint", "jscs", "mochaTest"]);
 
 };
