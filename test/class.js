@@ -422,6 +422,48 @@ describe("Class", function () {
             expect(c2.$map.attributes.length).to.equal(0);
         });
 
+        it("contains computed properties with informations about accessors and mutators", function () {
+            var Cls1 = Class.$extend({
+                // prop1 (rw)
+                getProp1: function () {},
+                setProp1: function () {},
+
+                // prop2 (ro)
+                getProp2: function () {},
+
+                // prop3 (wo)
+                setProp3: function () {},
+
+                // prop4 (ro, is)
+                isProp4: function () {},
+
+                // prop5 (ro, has)
+                hasProp5: function () {}
+            });
+
+            expect(Cls1.$map.computedProperties).not.to.be(undefined);
+
+            expect(Cls1.$map.computedProperties.prop1).not.to.be(undefined);
+            expect(Cls1.$map.computedProperties.prop1.get).to.equal("getProp1");
+            expect(Cls1.$map.computedProperties.prop1.set).to.equal("setProp1");
+
+            expect(Cls1.$map.computedProperties.prop2).not.to.be(undefined);
+            expect(Cls1.$map.computedProperties.prop2.get).to.equal("getProp2");
+            expect(Cls1.$map.computedProperties.prop2.set).to.be(undefined);
+
+            expect(Cls1.$map.computedProperties.prop3).not.to.be(undefined);
+            expect(Cls1.$map.computedProperties.prop3.get).to.be(undefined);
+            expect(Cls1.$map.computedProperties.prop3.set).to.equal("setProp3");
+
+            expect(Cls1.$map.computedProperties.prop4).not.to.be(undefined);
+            expect(Cls1.$map.computedProperties.prop4.get).to.equal("isProp4");
+            expect(Cls1.$map.computedProperties.prop4.set).to.be(undefined);
+
+            expect(Cls1.$map.computedProperties.prop5).not.to.be(undefined);
+            expect(Cls1.$map.computedProperties.prop5.get).to.equal("hasProp5");
+            expect(Cls1.$map.computedProperties.prop5.set).to.be(undefined);
+        });
+
     });
 
 });

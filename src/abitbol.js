@@ -21,7 +21,8 @@ Object.defineProperty(Class, "$map", {
     enumerable: false,
     value: {
         attributes: [],
-        methods: []
+        methods: [],
+        computedProperties: {}
     }
 });
 
@@ -55,6 +56,7 @@ Object.defineProperty(Class, "$extend", {
 
         properties = properties || {};
         var property;
+        var computedPropertyName;
         var i;
 
         // Copy properties from mixins
@@ -75,6 +77,33 @@ Object.defineProperty(Class, "$extend", {
             }
             if (typeof properties[property] == "function") {
                 _classMap.methods.push(property);
+                // Accessors / Mutators
+                if (property.indexOf("get") === 0) {
+                    computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
+                    if (!_classMap.computedProperties[computedPropertyName]) {
+                        _classMap.computedProperties[computedPropertyName] = {};
+                    }
+                    _classMap.computedProperties[computedPropertyName].get = property;
+                } else if (property.indexOf("set") === 0) {
+                    computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
+                    if (!_classMap.computedProperties[computedPropertyName]) {
+                        _classMap.computedProperties[computedPropertyName] = {};
+                    }
+                    _classMap.computedProperties[computedPropertyName].set = property;
+                } else if (property.indexOf("has") === 0) {
+                    computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
+                    if (!_classMap.computedProperties[computedPropertyName]) {
+                        _classMap.computedProperties[computedPropertyName] = {};
+                    }
+                    _classMap.computedProperties[computedPropertyName].get = property;
+                } else if (property.indexOf("is") === 0) {
+                    computedPropertyName = property.slice(2, 3).toLowerCase() + property.slice(3, property.length);
+                    if (!_classMap.computedProperties[computedPropertyName]) {
+                        _classMap.computedProperties[computedPropertyName] = {};
+                    }
+                    _classMap.computedProperties[computedPropertyName].get = property;
+                }
+                //
                 __class__.prototype[property] = (function (propertyName, method) {
                     return function () {
                         this.$super = _superClass.prototype[propertyName];

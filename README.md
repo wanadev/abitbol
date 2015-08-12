@@ -136,8 +136,26 @@ An object that contains the class' map (list of methods, attributes,...).
 
 ```javascript
 {
-    attributes: [],
-    methods: []
+    attributes: [
+        "attr1",
+        "attr2",
+        ...
+    ],
+    methods: [
+        "meth1",
+        "meth2",
+        ...
+    ],
+    computedProperties: {
+        prop1: {
+            get: "getProp1",
+            set: "setProp1"
+        },
+        prop2: {
+            get: "isProp2"
+        },
+        ...
+    }
 }
 ```
 
