@@ -44,7 +44,7 @@ To use Abitbol with Node.js (or in the browser using Browserify), first install 
 Then require it when needed:
 
 ```javascript
-var Class = require(abitbol);
+var Class = require("abitbol");
 ```
 
 
