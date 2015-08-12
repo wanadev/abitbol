@@ -20,6 +20,7 @@ Class.$extend = function (properties) {
         if (this.__init__) {
             this.__init__.apply(this, arguments);
         }
+        this.$class = __class__;
         return this;
     };
 
@@ -29,7 +30,6 @@ Class.$extend = function (properties) {
         if (typeof properties[property] == "function") {
             __class__.prototype[property] = (function (propertyName, method) {
                 return function () {
-                    this.$class = __class__;
                     this.$super = _superClass.prototype[propertyName];
                     this.$name = propertyName;
                     return method.apply(this, arguments);

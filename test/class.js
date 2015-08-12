@@ -16,10 +16,18 @@ describe("Class", function () {
     });
 
     it("instance keeps a reference to its class", function () {
-        var Cls1 = Class.$extend();
+        var Cls1 = Class.$extend({
+            meth1: function () {
+                $c = this.$class;
+            }
+        });
 
+        var $c;
         var c1 = new Cls1();
+        c1.meth1();
 
+        expect($c).to.be(Cls1);
+        expect(Cls1.$class).to.be(Cls1);
         expect(c1).to.be.an(Cls1.$class);
     });
 
