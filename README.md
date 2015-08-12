@@ -165,5 +165,10 @@ var MyClass = Class.$extend({
 ```
 
 
+## Changelog
+
+* **0.1.0**: Equivalent to Classy (except `Class.$classyVersion`, `Class.$withData()`, `Class.$noConflict()` that are not implemented).
+
+
 [Classy]: https://github.com/mitsuhiko/classy
 [dl-zip]: https://github.com/wanadev/abitbol/archive/master.zip
