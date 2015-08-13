@@ -7,7 +7,7 @@
 
 Abitbol is a small Javascript library that provides consistent/easy to use classes for Node.js and web browsers. It is heavily inspired by  Armin Ronacher's [Classy][] library, but extends its possibilities.
 
-**Built-in functionalities:**
+**Features:**
 
 * Simple inheritance
 * Consistent `this` (always points to the current instance)
@@ -175,7 +175,7 @@ console.log(george.old);            // true
 
 ### Annotations
 
-Abitbol classes supports annotations. To add annotations, just defines them in non-assigned stings **at the top** of the function:
+Abitbol classes supports annotations. To add annotations, just defines them in non-assigned strings **at the top** of the function:
 
 ```javascript
 
@@ -305,6 +305,7 @@ var MyClass = Class.$extend({
 
 ## Changelog
 
+* **1.0.0**: Computed properties generated from accessors and mutators (get/set), annotations, proper `this`.
 * **0.1.0**: Equivalent to Classy (except `Class.$classyVersion`, `Class.$withData()`, `Class.$noConflict()` that are not implemented).
 
 
