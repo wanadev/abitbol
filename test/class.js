@@ -38,6 +38,7 @@ describe("Class", function () {
 
             expect(Object.getOwnPropertyNames(c1)).not.to.contain("$super");
             expect(Object.getOwnPropertyNames(c1)).not.to.contain("$name");
+            expect(Object.getOwnPropertyNames(c1)).not.to.contain("$computedPropertyName");
 
             expect(Cls1.prototype.__include__).to.be(undefined);
             expect(Cls1.prototype.__classvars__).to.be(undefined);
@@ -201,6 +202,24 @@ describe("Class", function () {
             var c1 = new Cls1();
 
             expect(c1.meth1()).to.equal("meth1");
+        });
+
+        it("can access to their related computed property name if any", function () {
+            var Cls1 = Class.$extend({
+                meth1: function () {
+                    return this.$computedPropertyName;
+                },
+
+                getProp1: function () {
+                    return this.$computedPropertyName;
+                }
+            });
+
+            var c1 = new Cls1();
+
+            expect(c1.meth1()).to.be(undefined);
+            expect(c1.getProp1()).to.equal("prop1");
+            expect(c1.prop1).to.equal("prop1");
         });
 
         it("can call their super method", function () {

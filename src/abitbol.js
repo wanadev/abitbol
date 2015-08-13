@@ -88,6 +88,7 @@ Object.defineProperty(Class, "$extend", {
                 continue;
             }
             if (typeof properties[property] == "function") {
+                computedPropertyName = undefined;
                 _classMap.methods.push(property);
                 // Accessors / Mutators
                 if (property.indexOf("get") === 0) {
@@ -116,18 +117,20 @@ Object.defineProperty(Class, "$extend", {
                     _classMap.computedProperties[computedPropertyName].get = property;
                 }
                 //
-                __class__.prototype[property] = (function (propertyName, method) {
+                __class__.prototype[property] = (function (method, propertyName, computedPropertyName) {
                     return function () {
                         this.$super = _superClass.prototype[propertyName];
                         this.$name = propertyName;
+                        this.$computedPropertyName = computedPropertyName;
                         try {
                             return method.apply(this, arguments);
                         } finally {
                             delete this.$super;
                             delete this.$name;
+                            delete this.$computedPropertyName;
                         }
                     };
-                })(property, properties[property]);  // jshint ignore:line
+                })(properties[property], property, computedPropertyName);  // jshint ignore:line
             } else {
                 _classMap.attributes.push(property);
                 __class__.prototype[property] = properties[property];

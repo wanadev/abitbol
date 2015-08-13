@@ -190,6 +190,10 @@ From a method: invokes the corresponding super class method.
 
 From a method: the current method's name.
 
+#### `this.computedPropertyName`
+
+From a getter/setter method: the name of the related computed property.
+
 #### `Class.$map` / `this.$map`
 
 An object that contains the class' map (list of methods, attributes,...).
