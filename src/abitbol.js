@@ -1,5 +1,7 @@
 "use strict";
 
+var extractAnnotations = require("./annotation.js");
+
 var _disableConstructor = false;
 
 // Inherit from a class without calling its constructor.
@@ -20,8 +22,8 @@ Object.defineProperty(Class, "$class", {
 Object.defineProperty(Class, "$map", {
     enumerable: false,
     value: {
-        attributes: [],
-        methods: [],
+        attributes: {},
+        methods: {},
         computedProperties: {}
     }
 });
@@ -69,6 +71,7 @@ Object.defineProperty(Class, "$extend", {
         properties = properties || {};
         var property;
         var computedPropertyName;
+        var annotations;
         var i;
 
         // Copy properties from mixins
@@ -89,32 +92,41 @@ Object.defineProperty(Class, "$extend", {
             }
             if (typeof properties[property] == "function") {
                 computedPropertyName = undefined;
-                _classMap.methods.push(property);
+                _classMap.methods[property] = {annotations: {}};
                 // Accessors / Mutators
                 if (property.indexOf("get") === 0) {
                     computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
                     if (!_classMap.computedProperties[computedPropertyName]) {
-                        _classMap.computedProperties[computedPropertyName] = {};
+                        _classMap.computedProperties[computedPropertyName] = {annotations: {}};
                     }
                     _classMap.computedProperties[computedPropertyName].get = property;
                 } else if (property.indexOf("set") === 0) {
                     computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
                     if (!_classMap.computedProperties[computedPropertyName]) {
-                        _classMap.computedProperties[computedPropertyName] = {};
+                        _classMap.computedProperties[computedPropertyName] = {annotations: {}};
                     }
                     _classMap.computedProperties[computedPropertyName].set = property;
                 } else if (property.indexOf("has") === 0) {
                     computedPropertyName = property.slice(3, 4).toLowerCase() + property.slice(4, property.length);
                     if (!_classMap.computedProperties[computedPropertyName]) {
-                        _classMap.computedProperties[computedPropertyName] = {};
+                        _classMap.computedProperties[computedPropertyName] = {annotations: {}};
                     }
                     _classMap.computedProperties[computedPropertyName].get = property;
                 } else if (property.indexOf("is") === 0) {
                     computedPropertyName = property.slice(2, 3).toLowerCase() + property.slice(3, property.length);
                     if (!_classMap.computedProperties[computedPropertyName]) {
-                        _classMap.computedProperties[computedPropertyName] = {};
+                        _classMap.computedProperties[computedPropertyName] = {annotations: {}};
                     }
                     _classMap.computedProperties[computedPropertyName].get = property;
+                }
+                // Annotations
+                annotations = extractAnnotations(properties[property]);
+                for (var annotation in annotations) {
+                    _classMap.methods[property].annotations[annotation] = annotations[annotation];
+                    if (computedPropertyName) {
+                        _classMap.computedProperties[computedPropertyName]
+                                 .annotations[annotation] = annotations[annotation];
+                    }
                 }
                 //
                 __class__.prototype[property] = (function (method, propertyName, computedPropertyName) {
@@ -132,7 +144,7 @@ Object.defineProperty(Class, "$extend", {
                     };
                 })(properties[property], property, computedPropertyName);  // jshint ignore:line
             } else {
-                _classMap.attributes.push(property);
+                _classMap.attributes[property] = true;
                 __class__.prototype[property] = properties[property];
             }
         }

@@ -14,6 +14,7 @@ Built-in functionalities:
 * Simple way to declare static properties
 * Handful mixin
 * Computed properties generated from getters and setters
+* Annotations
 
 > The classiest javascript class library of the world  
 > -- George Abitbol
@@ -171,6 +172,23 @@ george.setAge(80);
 console.log(george.old);            // true
 ```
 
+### Annotations
+
+Abitbol classes supports annotations. To add annotations, just defines them in non-assigned stings **at the top** of the function:
+
+```javascript
+
+var MyClass = Class.$extend({
+    myMethod: function () {
+        "@annotation1 value";
+        "@annotation2 value";
+        
+        // ... Method's code here
+    }
+});
+
+The annotations will be putted in the `Class.$map` object (see bellow).
+
 
 ### Class API
 
@@ -200,23 +218,33 @@ An object that contains the class' map (list of methods, attributes,...).
 
 ```javascript
 {
-    attributes: [
-        "attr1",
-        "attr2",
+    attributes: {
+        attr1: true,
+        attr2: true,
         ...
-    ],
-    methods: [
-        "meth1",
-        "meth2",
+    },
+    methods: {
+        meth1: {
+            annotations: {
+                key: "value"
+            }
+        },
+        meth2: {
+            annotations: {}
+        },
         ...
-    ],
+    },
     computedProperties: {
         prop1: {
             get: "getProp1",
-            set: "setProp1"
+            set: "setProp1",
+            annotations: {
+                key: "value"
+            }
         },
         prop2: {
-            get: "isProp2"
+            get: "isProp2",
+            annotations: {}
         },
         ...
     }

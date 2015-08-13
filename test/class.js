@@ -364,15 +364,11 @@ describe("Class", function () {
         it("is defined with right sections", function () {
             var Cls1 = Class.$extend();
 
-            expect(Cls1.$map).not.to.be(undefined);
-            expect(Cls1.$map.attributes).not.to.be(undefined);
-            expect(Cls1.$map.methods).not.to.be(undefined);
+            expect(Cls1.$map).to.only.have.keys("attributes", "methods", "computedProperties");
 
             var c1 = new Cls1();
 
-            expect(c1.$map).not.to.be(undefined);
-            expect(c1.$map.attributes).not.to.be(undefined);
-            expect(c1.$map.methods).not.to.be(undefined);
+            expect(c1.$map).to.only.have.keys("attributes", "methods", "computedProperties");
         });
 
         it("contains attributes", function () {
@@ -380,15 +376,13 @@ describe("Class", function () {
                 attr1: "a"
             });
 
-            expect(Cls1.$map.attributes.length).to.equal(1);
-            expect(Cls1.$map.attributes).to.contain("attr1");
-            expect(Cls1.$map.methods.length).to.equal(0);
+            expect(Cls1.$map.attributes).to.only.have.key("attr1");
+            expect(Cls1.$map.methods).to.be.empty();
 
             var c1 = new Cls1();
 
-            expect(c1.$map.attributes.length).to.equal(1);
-            expect(c1.$map.attributes).to.contain("attr1");
-            expect(c1.$map.methods.length).to.equal(0);
+            expect(c1.$map.attributes).to.only.have.key("attr1");
+            expect(c1.$map.methods).to.be.empty();
         });
 
         it("contains methods", function () {
@@ -396,15 +390,13 @@ describe("Class", function () {
                 meth1: function () {}
             });
 
-            expect(Cls1.$map.methods.length).to.equal(1);
-            expect(Cls1.$map.methods).to.contain("meth1");
-            expect(Cls1.$map.attributes.length).to.equal(0);
+            expect(Cls1.$map.methods).to.only.have.key("meth1");
+            expect(Cls1.$map.attributes).to.be.empty();
 
             var c1 = new Cls1();
 
-            expect(c1.$map.methods.length).to.equal(1);
-            expect(c1.$map.methods).to.contain("meth1");
-            expect(c1.$map.attributes.length).to.equal(0);
+            expect(c1.$map.methods).to.only.have.key("meth1");
+            expect(c1.$map.attributes).to.be.empty();
         });
 
         it("contains inherited attributes", function () {
@@ -416,17 +408,13 @@ describe("Class", function () {
                 attr2: "b"
             });
 
-            expect(Cls2.$map.attributes.length).to.equal(2);
-            expect(Cls2.$map.attributes).to.contain("attr1");
-            expect(Cls2.$map.attributes).to.contain("attr2");
-            expect(Cls2.$map.methods.length).to.equal(0);
+            expect(Cls2.$map.attributes).to.only.have.keys("attr1", "attr2");
+            expect(Cls2.$map.methods).to.be.empty();
 
             var c2 = new Cls2();
 
-            expect(c2.$map.attributes.length).to.equal(2);
-            expect(c2.$map.attributes).to.contain("attr1");
-            expect(c2.$map.attributes).to.contain("attr2");
-            expect(c2.$map.methods.length).to.equal(0);
+            expect(c2.$map.attributes).to.only.have.keys("attr1", "attr2");
+            expect(c2.$map.methods).to.be.empty();
         });
 
         it("contains inherited methods", function () {
@@ -438,17 +426,13 @@ describe("Class", function () {
                 meth2: function () {}
             });
 
-            expect(Cls2.$map.methods.length).to.equal(2);
-            expect(Cls2.$map.methods).to.contain("meth1");
-            expect(Cls2.$map.methods).to.contain("meth2");
-            expect(Cls2.$map.attributes.length).to.equal(0);
+            expect(Cls2.$map.methods).to.only.have.keys("meth1", "meth2");
+            expect(Cls2.$map.attributes).to.be.empty();
 
             var c2 = new Cls2();
 
-            expect(c2.$map.methods.length).to.equal(2);
-            expect(c2.$map.methods).to.contain("meth1");
-            expect(c2.$map.methods).to.contain("meth2");
-            expect(c2.$map.attributes.length).to.equal(0);
+            expect(c2.$map.methods).to.only.have.keys("meth1", "meth2");
+            expect(c2.$map.attributes).to.be.empty();
         });
 
         it("contains computed properties with informations about accessors and mutators", function () {
@@ -491,6 +475,41 @@ describe("Class", function () {
             expect(Cls1.$map.computedProperties.prop5).not.to.be(undefined);
             expect(Cls1.$map.computedProperties.prop5.get).to.equal("hasProp5");
             expect(Cls1.$map.computedProperties.prop5.set).to.be(undefined);
+        });
+
+        it("contains annotations", function () {
+            var Cls1 = Class.$extend({
+                meth1: function () {
+                    "@annotation1 value1";
+                    "@annotation2";
+                },
+
+                getProp1: function () {
+                    "@annotation1 value1";
+                },
+
+                setProp1: function () {
+                    "@annotation2 value2";
+                }
+            });
+
+            expect(Cls1.$map.methods).to.only.have.keys("meth1", "getProp1", "setProp1");
+
+            expect(Cls1.$map.methods.meth1.annotations).to.only.have.keys("annotation1", "annotation2");
+            expect(Cls1.$map.methods.meth1.annotations.annotation1).to.equal("value1");
+            expect(Cls1.$map.methods.meth1.annotations.annotation2).to.be(true);
+
+            expect(Cls1.$map.methods.getProp1.annotations).to.only.have.key("annotation1");
+            expect(Cls1.$map.methods.getProp1.annotations.annotation1).to.equal("value1");
+
+            expect(Cls1.$map.methods.setProp1.annotations).to.only.have.key("annotation2");
+            expect(Cls1.$map.methods.setProp1.annotations.annotation2).to.equal("value2");
+
+            expect(Cls1.$map.computedProperties).to.only.have.key("prop1");
+            expect(Cls1.$map.computedProperties.prop1).to.have.key("annotations");
+            expect(Cls1.$map.computedProperties.prop1.annotations).to.only.have.key("annotation1", "annotation2");
+            expect(Cls1.$map.computedProperties.prop1.annotations.annotation1).to.equal("value1");
+            expect(Cls1.$map.computedProperties.prop1.annotations.annotation2).to.equal("value2");
         });
 
     });
