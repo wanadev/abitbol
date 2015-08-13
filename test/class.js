@@ -258,6 +258,25 @@ describe("Class", function () {
             expect(c3.param2).to.be(undefined);
         });
 
+        it("always has a 'this' binded to the current instance", function (done) {
+            var Cls1 = Class.$extend({
+                meth1: function () {
+                    return this;
+                },
+
+                meth2: function () {
+                    expect(this).to.be(c1);
+                    done();
+                }
+            });
+
+            var c1 = new Cls1();
+
+            expect(c1.meth1()).to.be(c1);
+
+            setTimeout(c1.meth2, 1);
+        });
+
     });
 
     describe("mixins", function () {

@@ -3,3 +3,4 @@ test
 Gruntfile.js
 .jscsrc
 dist
+examples

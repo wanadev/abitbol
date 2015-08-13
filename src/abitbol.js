@@ -39,6 +39,7 @@ Object.defineProperty(Class, "$extend", {
             if (_disableConstructor) {
                 return;
             }
+            // Abitbol special properties
             Object.defineProperty(this, "$class", {
                 enumerable: false,
                 value: __class__
@@ -51,6 +52,7 @@ Object.defineProperty(Class, "$extend", {
                 enumerable: false,
                 value: {}
             });
+            // Computed properties
             for (var property in _classMap.computedProperties) {
                 Object.defineProperty(this, property, {
                     enumerable: true,
@@ -59,6 +61,11 @@ Object.defineProperty(Class, "$extend", {
                     set: this[_classMap.computedProperties[property].set]
                 });
             }
+            // Bind this
+            for (var method in _classMap.methods) {
+                this[method] = this[method].bind(this);
+            }
+            // Call the constructor if any
             if (this.__init__) {
                 this.__init__.apply(this, arguments);
             }

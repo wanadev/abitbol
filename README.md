@@ -7,14 +7,15 @@
 
 Abitbol is a small Javascript library that provides consistent/easy to use classes for Node.js and web browsers. It is heavily inspired by  Armin Ronacher's [Classy][] library, but extends its possibilities.
 
-Built-in functionalities:
+**Built-in functionalities:**
 
 * Simple inheritance
+* Consistent `this` (always points to the current instance)
+* Annotations
+* Computed properties automatically generated from getters and setters
 * Simple way to call a super class method
 * Simple way to declare static properties
 * Handful mixin
-* Computed properties generated from getters and setters
-* Annotations
 
 > The classiest javascript class library of the world  
 > -- George Abitbol
