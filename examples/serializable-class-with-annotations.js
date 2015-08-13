@@ -30,7 +30,7 @@ var SerializableClass = Class.$extend({
         for (var computedPropertyName in this.$map.computedProperties) {
             if (this.$map.computedProperties[computedPropertyName].get &&
                 this.$map.computedProperties[computedPropertyName].set &&
-                this.$map.computedProperties[computedPropertyName].annotations.serializable !== "false"
+                this.$map.computedProperties[computedPropertyName].annotations.serializable !== false
             ) {
                 result[computedPropertyName] = this[computedPropertyName];
             }

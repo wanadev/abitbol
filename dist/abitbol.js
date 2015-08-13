@@ -267,6 +267,10 @@ function extractStrings(js) {
     return strings;
 }
 
+function autoCast(value) {
+    return value;
+}
+
 function extractAnnotations(func) {
     var js = cleanJs(func.toString());
     var strings = extractStrings(js);
@@ -288,6 +292,7 @@ function extractAnnotations(func) {
         if (string.indexOf(" ") > -1) {
             value = string.slice(string.indexOf(" ") + 1, string.length);
             value = value.trim();
+            value = autoCast(value);
         }
 
         annotations[key] = value;

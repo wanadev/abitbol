@@ -74,6 +74,22 @@ function extractStrings(js) {
     return strings;
 }
 
+function autoCast(value) {
+    if (value == "true") {
+        return true;
+    } else if (value == "false") {
+        return false;
+    } else if (value == "null") {
+        return null;
+    } else if (value == "undefined") {
+        return undefined;
+    } else if (value.match(/^([0-9]+\.?|[0-9]*\.[0-9]+)$/)) {
+        return parseFloat(value);
+    } else {
+        return value;
+    }
+}
+
 function extractAnnotations(func) {
     var js = cleanJs(func.toString());
     var strings = extractStrings(js);
@@ -95,6 +111,7 @@ function extractAnnotations(func) {
         if (string.indexOf(" ") > -1) {
             value = string.slice(string.indexOf(" ") + 1, string.length);
             value = value.trim();
+            value = autoCast(value);
         }
 
         annotations[key] = value;

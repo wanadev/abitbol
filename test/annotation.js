@@ -161,4 +161,28 @@ describe("annotation", function () {
         expect(annotations.key2).to.equal("value");
     });
 
+    it("casts automatically simple types", function () {
+        // jshint ignore:start
+        // jscs:disable
+        function fn () {
+            "@key1 true";
+            "@key2 false";
+            "@key3 null";
+            "@key4 undefined";
+            "@key5 42";
+            "@key6 3.14";
+        }
+        // jscs:enable
+        // jshint ignore:end
+
+        var annotations = extractAnnotations(fn);  // jshint ignore:line
+
+        expect(annotations.key1).to.be(true);
+        expect(annotations.key2).to.be(false);
+        expect(annotations.key3).to.be(null);
+        expect(annotations.key4).to.be(undefined);
+        expect(annotations.key5).to.be(42);
+        expect(annotations.key6).to.be(3.14);
+    });
+
 });
