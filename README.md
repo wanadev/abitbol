@@ -181,13 +181,25 @@ Abitbol classes supports annotations. To add annotations, just defines them in n
 var MyClass = Class.$extend({
     myMethod: function () {
         "@annotation1 value";
-        "@annotation2 value";
+        "@annotation2";
         
         // ... Method's code here
     }
 });
+```
 
-The annotations will be putted in the `Class.$map` object (see bellow).
+The annotations are accessible through the `Class.$map` object:
+
+```javascript
+console.log(MyClass.$map.methods.myMethod.annotations);
+
+// {
+//     annotation1: "value",
+//     annotation2: true
+// }
+```
+
+see the documentation about the `Class.$map` object bellow for more informations.
 
 
 ### Class API
