@@ -305,6 +305,7 @@ var MyClass = Class.$extend({
 
 ## Changelog
 
+* **1.0.3**: Allow computed properties' accessors and mutators to be monkey-patched.
 * **1.0.2**: Do not wrap methods when it is not necessary.
 * **1.0.1**: Fixes context issue with nested method calls.
 * **1.0.0**: Computed properties generated from accessors and mutators (get/set), annotations, proper `this`.
