@@ -1,6 +1,6 @@
 {
   "name": "abitbol",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The classiest javascript class library of the world",
   "main": "src/abitbol.js",
   "scripts": {
