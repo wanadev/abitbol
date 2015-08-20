@@ -626,6 +626,32 @@ describe("Class", function () {
             expect(c1.$data.prop1).to.equal("setb");
             expect(c1.prop1).to.equal("getsetb");
         });
+
+        it("can be monkey-patched (https://en.wikipedia.org/wiki/Monkey_patch)", function () {
+            var Cls1 = Class.$extend({
+                getProp1: function () {
+                    return "orig";
+                },
+
+                setProp1: function () {
+                    this.setter = "orig";
+                }
+            });
+
+            var c1 = new Cls1();
+
+            c1.getProp1 = function () {
+                return "patched";
+            };
+
+            c1.setProp1 = function () {
+                this.setter = "patched";
+            };
+
+            expect(c1.prop1).to.equal("patched");
+            c1.prop1 = "foo";
+            expect(c1.setter).to.equal("patched");
+        });
     });
 
 });
