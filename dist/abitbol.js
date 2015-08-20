@@ -139,15 +139,32 @@ Object.defineProperty(Class, "$extend", {
                 //
                 __class__.prototype[property] = (function (method, propertyName, computedPropertyName) {
                     return function () {
+                        var _oldSuper = this.$super;
+                        var _oldName = this.$name;
+                        var _oldComputedPropertyName = this.$computedPropertyName;
+
                         this.$super = _superClass.prototype[propertyName];
                         this.$name = propertyName;
                         this.$computedPropertyName = computedPropertyName;
+
                         try {
                             return method.apply(this, arguments);
                         } finally {
-                            delete this.$super;
-                            delete this.$name;
-                            delete this.$computedPropertyName;
+                            if (_oldSuper) {
+                                this.$super = _oldSuper;
+                            } else {
+                                delete this.$super;
+                            }
+                            if (_oldName) {
+                                this.$name = _oldName;
+                            } else {
+                                delete this.$name;
+                            }
+                            if (_oldComputedPropertyName) {
+                                this.$computedPropertyName = _oldComputedPropertyName;
+                            } else {
+                                delete this.$computedPropertyName;
+                            }
                         }
                     };
                 })(properties[property], property, computedPropertyName);  // jshint ignore:line
@@ -198,6 +215,8 @@ Object.defineProperty(Class, "$extend", {
 module.exports = Class;
 
 },{"./annotation.js":2}],2:[function(require,module,exports){
+"use strict";
+
 function cleanJs(js) {
     // remove function fn(param) {
     js = js.replace(/^function\s*[^(]*\s*\([^)]*\)\s*\{/, "");

@@ -1,3 +1,5 @@
+"use strict";
+
 var expect = require("expect.js");
 
 var extractAnnotations = require("../src/annotation.js");

@@ -1,3 +1,5 @@
+"use strict";
+
 function cleanJs(js) {
     // remove function fn(param) {
     js = js.replace(/^function\s*[^(]*\s*\([^)]*\)\s*\{/, "");

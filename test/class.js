@@ -1,3 +1,5 @@
+"use strict";
+
 var expect = require("expect.js");
 
 var Class = require("../src/abitbol.js");
@@ -73,6 +75,27 @@ describe("Class", function () {
             var c1 = new Cls1();
 
             expect(c1.$data).to.be.an(Object);
+        });
+
+        it("keeps right this.$super with nested method calls", function () {
+            var Cls1 = Class.$extend({
+                meth1: function () {}
+            });
+
+            var Cls2 = Cls1.$extend({
+                meth1: function () {
+                    var initialSuper = this.$super;
+                    this.meth2();
+                    expect(this.$super).not.to.be(undefined);
+                    expect(this.$super).to.be(initialSuper);
+                },
+
+                meth2: function () {
+                }
+            });
+
+            var c2 = new Cls2();
+            c2.meth1();
         });
 
     });
