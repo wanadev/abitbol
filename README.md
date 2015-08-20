@@ -305,6 +305,7 @@ var MyClass = Class.$extend({
 
 ## Changelog
 
+* **1.0.1**: Fixes context issue with nested method calls.
 * **1.0.0**: Computed properties generated from accessors and mutators (get/set), annotations, proper `this`.
 * **0.1.0**: Equivalent to Classy (except `Class.$classyVersion`, `Class.$withData()`, `Class.$noConflict()` that are not implemented).
 
