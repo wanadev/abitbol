@@ -300,6 +300,34 @@ describe("Class", function () {
             setTimeout(c1.meth2, 1);
         });
 
+        it("are wrapped only when necessary", function () {
+            var Cls1 = Class.$extend({
+                noWrap: function () {
+                    var test = "nowrap";
+                },
+
+                wrapSuper: function () {
+                    var test = "nowrap";
+                    var v = this.$super;
+                },
+
+                wrapName: function () {
+                    var test = "nowrap";
+                    var v = this.$name;
+                },
+
+                wrapComputed: function () {
+                    var test = "nowrap";
+                    var v = this.$computedPropertyName;
+                }
+            });
+
+            expect(Cls1.prototype.noWrap.toString()).to.match(/.*nowrap.*/);
+            expect(Cls1.prototype.wrapSuper.toString()).not.to.match(/.*nowrap.*/);
+            expect(Cls1.prototype.wrapName.toString()).not.to.match(/.*nowrap.*/);
+            expect(Cls1.prototype.wrapComputed.toString()).not.to.match(/.*nowrap.*/);
+        });
+
     });
 
     describe("mixins", function () {
