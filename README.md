@@ -182,7 +182,8 @@ console.log(george.old);            // true
 
 ### Annotations
 
-Abitbol classes supports annotations. To add annotations, just defines them in non-assigned strings **at the top** of the function:
+Abitbol classes supports annotations. To add annotations, just defines them in
+non-assigned strings **at the top** of the function:
 
 ```javascript
 
@@ -207,7 +208,8 @@ console.log(MyClass.$map.methods.myMethod.annotations);
 // }
 ```
 
-see the documentation about the `Class.$map` object bellow for more informations.
+see the documentation about the `Class.$map` object bellow for more
+informations.
 
 
 ### Class API
@@ -273,7 +275,8 @@ An object that contains the class' map (list of methods, attributes,...).
 
 #### `this.$data`
 
-An object to store ~~private~~ internal properties (to store computed properties' values for example).
+An object to store ~~private~~ internal properties (to store computed
+properties' values for example).
 
 #### `Class.__init__()`
 
@@ -320,6 +323,7 @@ If you use [Tern.js][tern] to autocomplete your javascript, you will need the
 
 ## Changelog
 
+* **1.0.4**: Updates dependencies
 * **1.0.3**: Allow computed properties' accessors and mutators to be
   monkey-patched.
 * **1.0.2**: Do not wrap methods when it is not necessary.
