@@ -2,5 +2,6 @@
 test
 Gruntfile.js
 .jscsrc
+.jshintrc
 dist
 examples

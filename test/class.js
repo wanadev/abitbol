@@ -9,13 +9,14 @@ describe("Class", function () {
     describe("instances", function () {
 
         it("keeps a reference to their class", function () {
+            var $c;
+
             var Cls1 = Class.$extend({
                 meth1: function () {
                     $c = this.$class;
                 }
             });
 
-            var $c;
             var c1 = new Cls1();
             c1.meth1();
 
@@ -282,6 +283,8 @@ describe("Class", function () {
         });
 
         it("always has a 'this' binded to the current instance", function (done) {
+            var c1;
+
             var Cls1 = Class.$extend({
                 meth1: function () {
                     return this;
@@ -293,7 +296,7 @@ describe("Class", function () {
                 }
             });
 
-            var c1 = new Cls1();
+            c1 = new Cls1();
 
             expect(c1.meth1()).to.be(c1);
 
