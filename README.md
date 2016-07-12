@@ -3,9 +3,13 @@
 [![Build Status](https://travis-ci.org/wanadev/abitbol.svg?branch=master)](https://travis-ci.org/wanadev/abitbol)
 [![NPM Version](http://img.shields.io/npm/v/abitbol.svg?style=flat)](https://www.npmjs.com/package/abitbol)
 [![License](http://img.shields.io/npm/l/abitbol.svg?style=flat)](https://github.com/wanadev/abitbol/blob/master/LICENSE)
+[![Dependencies](https://img.shields.io/david/wanadev/abitbol.svg?maxAge=2592000)]()
+[![Dev Dependencies](https://img.shields.io/david/dev/wanadev/abitbol.svg?maxAge=2592000)]()
 
 
-Abitbol is a small Javascript library that provides consistent/easy to use classes for Node.js and web browsers. It is heavily inspired by  Armin Ronacher's [Classy][] library, but extends its possibilities.
+Abitbol is a small Javascript library that provides consistent/easy to use
+classes for Node.js and web browsers. It is heavily inspired by  Armin
+Ronacher's [Classy][] library, but extends its possibilities.
 
 **Features:**
 
@@ -17,7 +21,7 @@ Abitbol is a small Javascript library that provides consistent/easy to use class
 * Simple way to declare static properties
 * Handful mixin
 
-> The classiest javascript class library of the world  
+> The classiest javascript class library of the world
 > -- George Abitbol
 
 ![George Abitbol](http://pix.toile-libre.org/upload/original/1439302256.png)
@@ -27,7 +31,8 @@ Abitbol is a small Javascript library that provides consistent/easy to use class
 
 ### Standalone Version (browser)
 
-To use the standalone version, first [download the latest zip][dl-zip] or clone the git repository:
+To use the standalone version, first [download the latest zip][dl-zip] or clone
+the git repository:
 
     git clone https://github.com/wanadev/abitbol.git
 
@@ -36,10 +41,11 @@ Then, just include one of the javascript of the `dist/` folder:
 ```html
 <script src="dist/abitbol.js"></script>
 ```
-    
+
 ### NPM
 
-To use Abitbol with Node.js (or in the browser using Browserify), first install the library:
+To use Abitbol with Node.js (or in the browser using Browserify), first install
+the library:
 
     npm install --save abitbol
 
@@ -60,11 +66,11 @@ var Vehicle = Class.$extend({
         this.color = color;
         this.speed = 0;
     },
-    
+
     move: function (speed) {
         this.speed = speed;
     },
-    
+
     stop: function () {
         this.speed = 0;
     }
@@ -79,12 +85,12 @@ var Car = Vehicle.$extend({
         this.$super(color);
         this.maxSpeed = 180;
     },
-    
+
     move: function (speed) {
         speed = Math.min(speed, this.maxSpeed);
         this.$super(speed);
     },
-    
+
     horn: function () {
         alert("BEEP BEEP");
     }
@@ -116,39 +122,40 @@ myTruck instanceof Car  // true
 
 ### Computed Properties (Getters and Setters)
 
-Abitbol allows you to creates computed properties simply by defining getters and setters:
+Abitbol allows you to creates computed properties simply by defining getters
+and setters:
 
 ```javascript
 var Person = Class.$extend({
 
     // This will create the Person.fullName property
-    
+
     getFullName: function () {
         return this.$data.fullName;
     },
-    
+
     setFullName: function (value) {
         this.$data.fullName = value;
     },
-    
+
     // This will create the Person.age property
-    
+
     getAge: function () {
         return this.$data.age;
     },
-    
+
     setAge: function (value) {
         this.$data.age = value;
     },
-    
+
     // This will create the read-only Person.old property
-    
+
     isOld: function () {
         return (this.age > 75);
     },
-    
+
     // This will create the read-only Person.woodenLeg property
-    
+
     hasWoodenLeg: function () {
         return (this.fullName == "Long John Silver");
     }
@@ -183,7 +190,7 @@ var MyClass = Class.$extend({
     myMethod: function () {
         "@annotation1 value";
         "@annotation2";
-        
+
         // ... Method's code here
     }
 });
@@ -282,7 +289,7 @@ var Boat = Vehicle.$extend({
     __include__: [{
         horn: Truck.prototype.horn
     }],
-    
+
     navigate: function (speed) {
         this.move(speed);
     }
@@ -302,14 +309,25 @@ var MyClass = Class.$extend({
 });
 ```
 
+## Autocompletion using Tern
+
+If you use [Tern.js][tern] to autocomplete your javascript, you will need the
+[tern-abitbol][] plugin.
+
+[tern-abitbol]: https://www.npmjs.com/package/tern-abitbol
+[tern]: http://ternjs.net/
+
 
 ## Changelog
 
-* **1.0.3**: Allow computed properties' accessors and mutators to be monkey-patched.
+* **1.0.3**: Allow computed properties' accessors and mutators to be
+  monkey-patched.
 * **1.0.2**: Do not wrap methods when it is not necessary.
 * **1.0.1**: Fixes context issue with nested method calls.
-* **1.0.0**: Computed properties generated from accessors and mutators (get/set), annotations, proper `this`.
-* **0.1.0**: Equivalent to Classy (except `Class.$classyVersion`, `Class.$withData()`, `Class.$noConflict()` that are not implemented).
+* **1.0.0**: Computed properties generated from accessors and mutators
+  (get/set), annotations, proper `this`.
+* **0.1.0**: Equivalent to Classy (except `Class.$classyVersion`,
+  `Class.$withData()`, `Class.$noConflict()` that are not implemented).
 
 
 [Classy]: https://github.com/mitsuhiko/classy
