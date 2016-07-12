@@ -6,17 +6,7 @@ module.exports = function(grunt) {
         jshint: {
             all: ["src/*.js", "test/*.js"],
             options: {
-                futurehostile: true,
-                freeze: true,
-                latedef: true,
-                noarg: true,
-                nocomma: true,
-                nonbsp: true,
-                nonew: true,
-                undef: true,
-                node: true,
-                curly: true,
-                mocha: true
+                jshintrc: true
             }
         },
 
