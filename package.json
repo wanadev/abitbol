@@ -21,7 +21,7 @@
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0",
     "grunt-jscs": "^2.0.0",
     "grunt-mocha-test": "^0.12.7",
     "mocha": "^2.2.5"
