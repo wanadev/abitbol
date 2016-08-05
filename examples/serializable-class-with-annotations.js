@@ -13,7 +13,7 @@ var Class = require("../src/abitbol.js");
 
 var SerializableClass = Class.$extend({
     __init__: function (params) {
-        for (propertyName in params || {}) {
+        for (var propertyName in params || {}) {
             if (this.$map.computedProperties[propertyName] || this.$map.attributes[propertyName]) {
                 this[propertyName] = params[propertyName];
             }
@@ -102,7 +102,7 @@ var Person = SerializableClass.$extend({
 
 var george = new Person();
 george.firstName = "George";
-george.lastName = "Abitbol"
+george.lastName = "Abitbol";
 george.heightCentimeter = 192;
 
 console.log(george.fullName);    // "George Abitbol"
