@@ -2,7 +2,20 @@
 
 function cleanJs(js) {
     // remove function fn(param) {
-    js = js.replace(/^function\s*[^(]*\s*\([^)]*\)\s*\{/, "");
+    // or fn(param) {
+    // or (param) => {
+    var c, p = 0;
+    for (var i = 0 ; i < js.length ; i++) {
+        c = js[i];
+        if (c == "(") {
+            ++p;
+        } else if (c == ")") {
+            --p;
+        } else if (c == "{" && p === 0) {
+            js = js.slice(i + 1);
+            break;
+        }
+    }
 
     // remove comments (not super safe but should work in most cases)
     js = js.replace(/\/\*(.|\r|\n)*?\*\//g, "");
