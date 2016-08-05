@@ -4,7 +4,8 @@ function cleanJs(js) {
     // remove function fn(param) {
     // or fn(param) {
     // or (param) => {
-    var c, p = 0;
+    var c;
+    var p = 0;
     for (var i = 0 ; i < js.length ; i++) {
         c = js[i];
         if (c == "(") {
