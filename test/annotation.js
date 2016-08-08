@@ -56,6 +56,60 @@ describe("annotation", function () {
         expect(annotations.key2).to.equal("value");
     });
 
+    it("extracts annotations of a ES6-defined functions", function () {
+        // jshint ignore:start
+        // jscs:disable
+        var obj = {
+            fn(param1, param2) {
+                "@key value";
+            }
+        }
+        // jscs:enable
+        // jshint ignore:end
+
+        var annotations = extractAnnotations(obj.fn);  // jshint ignore:line
+
+        expect(annotations).to.only.have.keys("key");
+
+        expect(annotations.key).to.equal("value");
+    });
+
+    it("extracts annotations of a arrow functions", function () {
+        // jshint ignore:start
+        // jscs:disable
+        var fn = param => {
+            "@key value";
+        }
+        // jscs:enable
+        // jshint ignore:end
+
+        var annotations = extractAnnotations(fn);  // jshint ignore:line
+
+        expect(annotations).to.only.have.keys("key");
+
+        expect(annotations.key).to.equal("value");
+    });
+
+    /* Note: Node.js is not really happy with default parameters for now.
+             So this test is currently disabled.
+
+    it("extracts annotations with default parameters functions", function () {
+        // jshint ignore:start
+        // jscs:disable
+        function fn (param1 = {}, param2 = function(param3) {}) {
+            "@key value";
+        }
+        // jscs:enable
+        // jshint ignore:end
+
+        var annotations = extractAnnotations(fn);  // jshint ignore:line
+
+        expect(annotations).to.only.have.keys("key");
+
+        expect(annotations.key).to.equal("value");
+    });
+    */
+
     it("extracts annotations of a inline (minified?) functions", function () {
         // jshint ignore:start
         // jscs:disable
