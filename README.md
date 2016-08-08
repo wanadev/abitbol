@@ -323,8 +323,9 @@ If you use [Tern.js][tern] to autocomplete your javascript, you will need the
 
 ## Changelog
 
+* **1.1.0**: Adds ES2015 support in the annotation parser
 * **1.0.4**: Updates dependencies
-* **1.0.3**: Allow computed properties' accessors and mutators to be
+* **1.0.3**: Allows computed properties' accessors and mutators to be
   monkey-patched.
 * **1.0.2**: Do not wrap methods when it is not necessary.
 * **1.0.1**: Fixes context issue with nested method calls.
