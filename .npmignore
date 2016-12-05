@@ -5,3 +5,5 @@ Gruntfile.js
 .jshintrc
 dist
 examples
+abitbol-logo.svg
+abitbol-logo.png
