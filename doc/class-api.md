@@ -1,0 +1,135 @@
+---
+title: Abitbol Class API
+autotoc: true
+menuOrder: 3
+---
+
+# Abitbol Class API
+
+## Class Special Properties
+
+### Class.`__`init`__`()
+
+The constructor method.
+
+### Class.`__`include`__`
+
+A list of objects that contains properties to mix in the class.
+
+```javascript
+
+var Boat = Vehicle.$extend({
+    __include__: [{
+        horn: Truck.prototype.horn
+    }],
+
+    navigate: function (speed) {
+        this.move(speed);
+    }
+});
+```
+
+### Class.`__`classvars`__`
+
+An object containing static properties of the class.
+
+```javascript
+var MyClass = Class.$extend({
+    __classvars__: {
+        staticAttribute: "value",
+        staticMethod: function () {}
+    }
+});
+```
+
+
+## Static Methods and Attributes
+
+### Class.$extend(properties)
+
+Creates a new class that extends the given class.
+
+### Class.$class
+
+The class object for this instance.
+
+### Class.$map
+
+An object that contains the class' map (list of methods, attributes,...).
+
+```javascript
+{
+    attributes: {
+        attr1: true,
+        attr2: true,
+        ...
+    },
+    methods: {
+        meth1: {
+            annotations: {
+                key: "value"
+            }
+        },
+        meth2: {
+            annotations: {}
+        },
+        ...
+    },
+    computedProperties: {
+        prop1: {
+            get: "getProp1",
+            set: "setProp1",
+            annotations: {
+                key: "value"
+            }
+        },
+        prop2: {
+            get: "isProp2",
+            annotations: {}
+        },
+        ...
+    }
+}
+```
+
+## Instance Properties
+
+### classInstance.$class
+
+The class object for this instance.
+
+### classInstance.$map
+
+TODO
+
+
+## Instance Internal Methods and Properties
+
+### this.$super()
+
+From a method: invokes the corresponding super class method.
+
+### this.$name
+
+From a method: the current method's name.
+
+### this.$computedPropertyName
+
+From a getter/setter method: the name of the related computed property.
+
+### this.$data
+
+An object to store ~~private~~ internal properties (to store computed
+properties' values for example).
+
+
+
+
+
+
+
+
+
+
+
+

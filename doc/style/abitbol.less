@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css?family=Sancreek");
+@import "node_modules/enlightme/style/variables.less";
+
+// Main
+
+@main-color: #281F1A;
+@background-color: #D3B378;
+@main-text-color: #111;
+
+// Header links
+
+@header-links-background: @main-color;
+@header-links-text-color: lighten(@main-color, 70%);
+@header-links-active-background: lighten(@main-color, 10%);
+
+// Header
+
+@header-title-font: "Sancreek", Arial, sans-serif;
+@header-title-font-size: 450%;
+
+// Menu
+
+@menu-background-color: #EFE4D1;
+@menu-toc-active-text-color: lighten(@main-color, 15%);
+
+// Content
+
+@content-inline-code-color: @main-color;
+@content-code-block-background: #27241E;;
+
+@content-blockquote-background: #E2D6C3;
+@content-blockquote-color: @main-color;
+
+// Footer
+
+@footer-text-color: lighten(@main-color, 10%);
+
+@import "node_modules/enlightme/style/style.less";
+@import "node_modules/enlightme/style/mobile.less";
+
+header h1 {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+
+    span {
+        padding-left: 10px;
+    }
+
+}

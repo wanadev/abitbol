@@ -24,6 +24,10 @@
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-jscs": "^2.0.0",
     "grunt-mocha-test": "^0.13.2",
-    "mocha": "^3.0.0"
+    "mocha": "^3.0.0",
+    "enlightme": "*"
+  },
+  "enlightme": {
+      "appName": "Abitbol"
   }
 }
