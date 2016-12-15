@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Abitbol Class API - Abitbol</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+            <link rel="shortcut icon" type="image/png" href="images/abitbol-logo.svg" />
+        
+        
+            <link type="text/css" rel="stylesheet" href="style/abitbol.css" />
+        
+            <link type="text/css" rel="stylesheet" href="style/gruvbox-dark.css" />
+        
+    </head>
+
+    <body class=" page-with-nav">
+
+        <div class="page">
+
+            
+                <div id="toggle-mobile-menu" title="Toggle menu">☰</div>
+            
+
+            
+                <nav class="links">
+                    <ul>
+                        <li><a href="https://github.com/wanadev/abitbol">Github</a></li><li><a href="https://www.npmjs.com/package/abitbol">NPM</a></li>
+                    </ul>
+                </nav>
+            
+
+            <header>
+                <h1>
+                    
+                        <img src="images/abitbol-logo.svg"  alt="Abitbol logo" />
+                    
+                    <span>Abitbol</span>
+                </h1>
+            </header>
+
+            <div class="content">
+
+                
+                    <nav>
+                        
+                            
+
+    <ul class="menu">
+        
+            
+            <li>
+                <a href="index.html" >Home</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="getting-started.html" >Getting Started</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="using-abitbol.html" >Using Abitbol</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="class-api.html" class="active">Abitbol Class API</a>
+                
+                    
+
+    
+    <ul class="toc">
+        
+            <li>
+                <a href="#class-special-properties">Class Special Properties</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#class-__-init-__-">Class.<code>__</code>init<code>__</code>()</a>
+                
+            </li>
+        
+            <li>
+                <a href="#class-__-include-__-">Class.<code>__</code>include<code>__</code></a>
+                
+            </li>
+        
+            <li>
+                <a href="#class-__-classvars-__-">Class.<code>__</code>classvars<code>__</code></a>
+                
+            </li>
+        
+    </ul>
+
+                
+            </li>
+        
+            <li>
+                <a href="#static-methods-and-attributes">Static Methods and Attributes</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#class-extend-properties-">Class.$extend(properties)</a>
+                
+            </li>
+        
+            <li>
+                <a href="#class-class">Class.$class</a>
+                
+            </li>
+        
+            <li>
+                <a href="#class-map">Class.$map</a>
+                
+            </li>
+        
+    </ul>
+
+                
+            </li>
+        
+            <li>
+                <a href="#instance-properties">Instance Properties</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#classinstance-class">classInstance.$class</a>
+                
+            </li>
+        
+            <li>
+                <a href="#classinstance-map">classInstance.$map</a>
+                
+            </li>
+        
+    </ul>
+
+                
+            </li>
+        
+            <li>
+                <a href="#instance-internal-methods-and-properties">Instance Internal Methods and Properties</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#this-super-">this.$super()</a>
+                
+            </li>
+        
+            <li>
+                <a href="#this-name">this.$name</a>
+                
+            </li>
+        
+            <li>
+                <a href="#this-computedpropertyname">this.$computedPropertyName</a>
+                
+            </li>
+        
+            <li>
+                <a href="#this-data">this.$data</a>
+                
+            </li>
+        
+    </ul>
+
+                
+            </li>
+        
+    </ul>
+
+
+
+                
+            </li>
+        
+            
+            <li>
+                <a href="autocompletion.html" >Autocompletion Using Tern</a>
+                
+            </li>
+        
+    </ul>
+
+
+                        
+                    </nav>
+                
+                <article>
+                    <h1 id="abitbol-class-api">Abitbol Class API</h1>
+<h2 id="class-special-properties">Class Special Properties</h2>
+<h3 id="class-__-init-__-">Class.<code>__</code>init<code>__</code>()</h3>
+<p>The constructor method.</p>
+<h3 id="class-__-include-__-">Class.<code>__</code>include<code>__</code></h3>
+<p>A list of objects that contains properties to mix in the class.</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Boat = Vehicle.$extend({
+    <span class="hljs-attr">__include__</span>: [{
+        <span class="hljs-attr">horn</span>: Truck.prototype.horn
+    }],
+
+    <span class="hljs-attr">navigate</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">speed</span>) </span>{
+        <span class="hljs-keyword">this</span>.move(speed);
+    }
+});</code></pre>
+
+<h3 id="class-__-classvars-__-">Class.<code>__</code>classvars<code>__</code></h3>
+<p>An object containing static properties of the class.</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyClass = Class.$extend({
+    <span class="hljs-attr">__classvars__</span>: {
+        <span class="hljs-attr">staticAttribute</span>: <span class="hljs-string">"value"</span>,
+        <span class="hljs-attr">staticMethod</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{}
+    }
+});</code></pre>
+
+
+<h2 id="static-methods-and-attributes">Static Methods and Attributes</h2>
+<h3 id="class-extend-properties-">Class.$extend(properties)</h3>
+<p>Creates a new class that extends the given class.</p>
+<h3 id="class-class">Class.$class</h3>
+<p>The class object for this instance.</p>
+<h3 id="class-map">Class.$map</h3>
+<p>An object that contains the class' map (list of methods, attributes,...).</p>
+<pre><code class="hljs javascript">{
+    <span class="hljs-attr">attributes</span>: {
+        <span class="hljs-attr">attr1</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">attr2</span>: <span class="hljs-literal">true</span>,
+        ...
+    },
+    <span class="hljs-attr">methods</span>: {
+        <span class="hljs-attr">meth1</span>: {
+            <span class="hljs-attr">annotations</span>: {
+                <span class="hljs-attr">key</span>: <span class="hljs-string">"value"</span>
+            }
+        },
+        <span class="hljs-attr">meth2</span>: {
+            <span class="hljs-attr">annotations</span>: {}
+        },
+        ...
+    },
+    <span class="hljs-attr">computedProperties</span>: {
+        <span class="hljs-attr">prop1</span>: {
+            <span class="hljs-attr">get</span>: <span class="hljs-string">"getProp1"</span>,
+            <span class="hljs-attr">set</span>: <span class="hljs-string">"setProp1"</span>,
+            <span class="hljs-attr">annotations</span>: {
+                <span class="hljs-attr">key</span>: <span class="hljs-string">"value"</span>
+            }
+        },
+        <span class="hljs-attr">prop2</span>: {
+            <span class="hljs-attr">get</span>: <span class="hljs-string">"isProp2"</span>,
+            <span class="hljs-attr">annotations</span>: {}
+        },
+        ...
+    }
+}</code></pre>
+
+<h2 id="instance-properties">Instance Properties</h2>
+<h3 id="classinstance-class">classInstance.$class</h3>
+<p>The class object for this instance.</p>
+<h3 id="classinstance-map">classInstance.$map</h3>
+<p>TODO</p>
+<h2 id="instance-internal-methods-and-properties">Instance Internal Methods and Properties</h2>
+<h3 id="this-super-">this.$super()</h3>
+<p>From a method: invokes the corresponding super class method.</p>
+<h3 id="this-name">this.$name</h3>
+<p>From a method: the current method's name.</p>
+<h3 id="this-computedpropertyname">this.$computedPropertyName</h3>
+<p>From a getter/setter method: the name of the related computed property.</p>
+<h3 id="this-data">this.$data</h3>
+<p>An object to store <del>private</del> internal properties (to store computed
+properties' values for example).</p>
+
+                </article>
+            </div>
+
+            <footer>
+                Copyright (c)  2015-2016 Wanadev
+- <a href="http://www.wandev.fr/">www.wanadev.fr</a><br />
+Unless otherwise specified, this documentation is published under the
+<a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
+Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
+
+            </footer>
+
+        </div>
+
+        <script>
+
+(function() {
+
+    var MENU_UNFOLDED_CLASS = "mobile-menu-unfolded";
+
+    var menuButton = document.getElementById("toggle-mobile-menu");
+    var menuItems = document.querySelectorAll(".content nav a");
+
+    function getAbsolutePosition(element) {
+        if (typeof(element) == "string") {
+            element = document.getElementById(element);
+        }
+        if (!(element instanceof Element)) {
+            return {x: 0, y: 0};
+        }
+
+        var css;
+        var origElement = element;
+
+        try {
+            css = getComputedStyle(element);
+        } catch (e) {
+            return {x: 0, y: 0};
+        }
+
+        if (!css) {
+            return {x: 0, y: 0};
+        }
+
+        var x = -parseInt(css.borderLeftWidth);
+        var y = -parseInt(css.borderTopWidth);
+
+        while (element.offsetParent) {
+            css = getComputedStyle(element);
+
+            x += element.offsetLeft || 0;
+            x += parseInt(css.borderLeftWidth);
+
+            y += element.offsetTop || 0;
+            y += parseInt(css.borderTopWidth);
+
+            element = element.offsetParent;
+        }
+
+        element = origElement;
+
+        while (element.parentNode && !(element instanceof HTMLBodyElement)) {
+            x -= element.scrollLeft || 0;
+            y -= element.scrollTop || 0;
+            element = element.parentNode;
+        }
+
+        return {x: x, y: y};
+    };
+
+    function openMenu() {
+        document.body.classList.add(MENU_UNFOLDED_CLASS);
+    }
+
+    function closeMenu() {
+        document.body.classList.remove(MENU_UNFOLDED_CLASS);
+    }
+
+    function toggleMenu() {
+        document.body.classList.toggle(MENU_UNFOLDED_CLASS);
+    }
+
+    function _onMenuItemClicked(event) {
+        var href = this.getAttribute("href");
+
+        if (href[0] != "#") {
+            return;
+        }
+
+        event.preventDefault();
+
+        var anchor = href.substr(1, href.length-1);
+        var anchorPosition = getAbsolutePosition(anchor);
+        document.scrollingElement.scrollTop = anchorPosition.y - menuButton.offsetHeight;
+
+        closeMenu();
+    }
+
+    menuButton.onclick = toggleMenu;
+    menuItems.forEach(function(item) {
+        item.onclick = _onMenuItemClicked;
+    });
+
+})();
+
+</script>
+
+    </body>
+
+</html>

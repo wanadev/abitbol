@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Abitbol</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+            <link rel="shortcut icon" type="image/png" href="images/abitbol-logo.svg" />
+        
+        
+            <link type="text/css" rel="stylesheet" href="style/abitbol.css" />
+        
+            <link type="text/css" rel="stylesheet" href="style/gruvbox-dark.css" />
+        
+    </head>
+
+    <body class=" page-with-nav">
+
+        <div class="page">
+
+            
+                <div id="toggle-mobile-menu" title="Toggle menu">☰</div>
+            
+
+            
+                <nav class="links">
+                    <ul>
+                        <li><a href="https://github.com/wanadev/abitbol">Github</a></li><li><a href="https://www.npmjs.com/package/abitbol">NPM</a></li>
+                    </ul>
+                </nav>
+            
+
+            <header>
+                <h1>
+                    
+                        <img src="images/abitbol-logo.svg"  alt="Abitbol logo" />
+                    
+                    <span>Abitbol</span>
+                </h1>
+            </header>
+
+            <div class="content">
+
+                
+                    <nav>
+                        
+                            
+
+    <ul class="menu">
+        
+            
+            <li>
+                <a href="index.html" class="active">Home</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="getting-started.html" >Getting Started</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="using-abitbol.html" >Using Abitbol</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="class-api.html" >Abitbol Class API</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="autocompletion.html" >Autocompletion Using Tern</a>
+                
+            </li>
+        
+    </ul>
+
+
+                        
+                    </nav>
+                
+                <article>
+                    <p>Abitbol is a small Javascript library that provides consistent/easy to use
+classes for Node.js and web browsers. It is heavily inspired by  Armin
+Ronacher&#39;s <a href="https://github.com/mitsuhiko/classy">Classy</a> library, but extends its possibilities.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Simple inheritance</li>
+<li>Consistent <code>this</code> (always points to the current instance)</li>
+<li>Annotations</li>
+<li>Computed properties automatically generated from getters and setters</li>
+<li>Simple way to call a super class method</li>
+<li>Simple way to declare static properties</li>
+<li>Handful mixin</li>
+</ul>
+<p><img src="http://pix.toile-libre.org/upload/original/1439302256.png" alt="George Abitbol"></p>
+<blockquote>
+<p>The classiest javascript class library of the world
+-- George Abitbol</p>
+</blockquote>
+<h2 id="changelog">Changelog</h2>
+<ul>
+<li><strong>1.1.0</strong>: Adds ES2015 support in the annotation parser</li>
+<li><strong>1.0.4</strong>: Updates dependencies</li>
+<li><strong>1.0.3</strong>: Allows computed properties&#39; accessors and mutators to be
+monkey-patched.</li>
+<li><strong>1.0.2</strong>: Do not wrap methods when it is not necessary.</li>
+<li><strong>1.0.1</strong>: Fixes context issue with nested method calls.</li>
+<li><strong>1.0.0</strong>: Computed properties generated from accessors and mutators
+(get/set), annotations, proper <code>this</code>.</li>
+<li><strong>0.1.0</strong>: Equivalent to Classy (except <code>Class.$classyVersion</code>,
+<code>Class.$withData()</code>, <code>Class.$noConflict()</code> that are not implemented).</li>
+</ul>
+
+                </article>
+            </div>
+
+            <footer>
+                Copyright (c)  2015-2016 Wanadev
+- <a href="http://www.wandev.fr/">www.wanadev.fr</a><br />
+Unless otherwise specified, this documentation is published under the
+<a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
+Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
+
+            </footer>
+
+        </div>
+
+        <script>
+
+(function() {
+
+    var MENU_UNFOLDED_CLASS = "mobile-menu-unfolded";
+
+    var menuButton = document.getElementById("toggle-mobile-menu");
+    var menuItems = document.querySelectorAll(".content nav a");
+
+    function getAbsolutePosition(element) {
+        if (typeof(element) == "string") {
+            element = document.getElementById(element);
+        }
+        if (!(element instanceof Element)) {
+            return {x: 0, y: 0};
+        }
+
+        var css;
+        var origElement = element;
+
+        try {
+            css = getComputedStyle(element);
+        } catch (e) {
+            return {x: 0, y: 0};
+        }
+
+        if (!css) {
+            return {x: 0, y: 0};
+        }
+
+        var x = -parseInt(css.borderLeftWidth);
+        var y = -parseInt(css.borderTopWidth);
+
+        while (element.offsetParent) {
+            css = getComputedStyle(element);
+
+            x += element.offsetLeft || 0;
+            x += parseInt(css.borderLeftWidth);
+
+            y += element.offsetTop || 0;
+            y += parseInt(css.borderTopWidth);
+
+            element = element.offsetParent;
+        }
+
+        element = origElement;
+
+        while (element.parentNode && !(element instanceof HTMLBodyElement)) {
+            x -= element.scrollLeft || 0;
+            y -= element.scrollTop || 0;
+            element = element.parentNode;
+        }
+
+        return {x: x, y: y};
+    };
+
+    function openMenu() {
+        document.body.classList.add(MENU_UNFOLDED_CLASS);
+    }
+
+    function closeMenu() {
+        document.body.classList.remove(MENU_UNFOLDED_CLASS);
+    }
+
+    function toggleMenu() {
+        document.body.classList.toggle(MENU_UNFOLDED_CLASS);
+    }
+
+    function _onMenuItemClicked(event) {
+        var href = this.getAttribute("href");
+
+        if (href[0] != "#") {
+            return;
+        }
+
+        event.preventDefault();
+
+        var anchor = href.substr(1, href.length-1);
+        var anchorPosition = getAbsolutePosition(anchor);
+        document.scrollingElement.scrollTop = anchorPosition.y - menuButton.offsetHeight;
+
+        closeMenu();
+    }
+
+    menuButton.onclick = toggleMenu;
+    menuItems.forEach(function(item) {
+        item.onclick = _onMenuItemClicked;
+    });
+
+})();
+
+</script>
+
+    </body>
+
+</html>

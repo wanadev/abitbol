@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Using Abitbol - Abitbol</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+            <link rel="shortcut icon" type="image/png" href="images/abitbol-logo.svg" />
+        
+        
+            <link type="text/css" rel="stylesheet" href="style/abitbol.css" />
+        
+            <link type="text/css" rel="stylesheet" href="style/gruvbox-dark.css" />
+        
+    </head>
+
+    <body class=" page-with-nav">
+
+        <div class="page">
+
+            
+                <div id="toggle-mobile-menu" title="Toggle menu">☰</div>
+            
+
+            
+                <nav class="links">
+                    <ul>
+                        <li><a href="https://github.com/wanadev/abitbol">Github</a></li><li><a href="https://www.npmjs.com/package/abitbol">NPM</a></li>
+                    </ul>
+                </nav>
+            
+
+            <header>
+                <h1>
+                    
+                        <img src="images/abitbol-logo.svg"  alt="Abitbol logo" />
+                    
+                    <span>Abitbol</span>
+                </h1>
+            </header>
+
+            <div class="content">
+
+                
+                    <nav>
+                        
+                            
+
+    <ul class="menu">
+        
+            
+            <li>
+                <a href="index.html" >Home</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="getting-started.html" >Getting Started</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="using-abitbol.html" class="active">Using Abitbol</a>
+                
+                    
+
+    
+    <ul class="toc">
+        
+            <li>
+                <a href="#defining-classes">Defining Classes</a>
+                
+            </li>
+        
+            <li>
+                <a href="#creating-subclases">Creating Subclases</a>
+                
+            </li>
+        
+            <li>
+                <a href="#using-your-classes">Using Your Classes</a>
+                
+            </li>
+        
+            <li>
+                <a href="#computed-properties-getters-and-setters-">Computed Properties (Getters and Setters)</a>
+                
+            </li>
+        
+            <li>
+                <a href="#annotations">Annotations</a>
+                
+            </li>
+        
+    </ul>
+
+
+
+                
+            </li>
+        
+            
+            <li>
+                <a href="class-api.html" >Abitbol Class API</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="autocompletion.html" >Autocompletion Using Tern</a>
+                
+            </li>
+        
+    </ul>
+
+
+                        
+                    </nav>
+                
+                <article>
+                    <h1 id="using-abitbol">Using Abitbol</h1>
+<h2 id="defining-classes">Defining Classes</h2>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Vehicle = Class.$extend({
+    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">color</span>) </span>{
+        <span class="hljs-keyword">this</span>.color = color;
+        <span class="hljs-keyword">this</span>.speed = <span class="hljs-number">0</span>;
+    },
+
+    <span class="hljs-attr">move</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">speed</span>) </span>{
+        <span class="hljs-keyword">this</span>.speed = speed;
+    },
+
+    <span class="hljs-attr">stop</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">this</span>.speed = <span class="hljs-number">0</span>;
+    }
+});</code></pre>
+
+<h2 id="creating-subclases">Creating Subclases</h2>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Car = Vehicle.$extend({
+    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">color</span>) </span>{
+        <span class="hljs-keyword">this</span>.$<span class="hljs-keyword">super</span>(color);
+        <span class="hljs-keyword">this</span>.maxSpeed = <span class="hljs-number">180</span>;
+    },
+
+    <span class="hljs-attr">move</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">speed</span>) </span>{
+        speed = <span class="hljs-built_in">Math</span>.min(speed, <span class="hljs-keyword">this</span>.maxSpeed);
+        <span class="hljs-keyword">this</span>.$<span class="hljs-keyword">super</span>(speed);
+    },
+
+    <span class="hljs-attr">horn</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        alert(<span class="hljs-string">"BEEP BEEP"</span>);
+    }
+});
+
+<span class="hljs-keyword">var</span> Truck = Car.$extend({
+    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">color</span>) </span>{
+        <span class="hljs-keyword">this</span>.$<span class="hljs-keyword">super</span>(color);
+        <span class="hljs-keyword">this</span>.maxSpeed = <span class="hljs-number">90</span>;
+    },
+
+    <span class="hljs-attr">horn</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        alert(<span class="hljs-string">"HONK HONK"</span>);
+    }
+});</code></pre>
+
+<h2 id="using-your-classes">Using Your Classes</h2>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> mustang = <span class="hljs-keyword">new</span> Car(<span class="hljs-string">"red"</span>);
+mustang.move(<span class="hljs-number">120</span>);
+mustang.horn();
+
+<span class="hljs-keyword">var</span> myTruck = <span class="hljs-keyword">new</span> Truck(<span class="hljs-string">"blue"</span>);
+myTruck <span class="hljs-keyword">instanceof</span> Car  <span class="hljs-comment">// true</span></code></pre>
+
+
+<h2 id="computed-properties-getters-and-setters-">Computed Properties (Getters and Setters)</h2>
+<p>Abitbol allows you to creates computed properties simply by defining getters
+and setters:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Person = Class.$extend({
+
+    <span class="hljs-comment">// This will create the Person.fullName property</span>
+
+    getFullName: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$data.fullName;
+    },
+
+    <span class="hljs-attr">setFullName</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
+        <span class="hljs-keyword">this</span>.$data.fullName = value;
+    },
+
+    <span class="hljs-comment">// This will create the Person.age property</span>
+
+    getAge: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$data.age;
+    },
+
+    <span class="hljs-attr">setAge</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) </span>{
+        <span class="hljs-keyword">this</span>.$data.age = value;
+    },
+
+    <span class="hljs-comment">// This will create the read-only Person.old property</span>
+
+    isOld: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.age &gt; <span class="hljs-number">75</span>);
+    },
+
+    <span class="hljs-comment">// This will create the read-only Person.woodenLeg property</span>
+
+    hasWoodenLeg: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.fullName == <span class="hljs-string">"Long John Silver"</span>);
+    }
+})</code></pre>
+
+<p>and playing with those properties is straightforward:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> george = <span class="hljs-keyword">new</span> Person();
+
+george.fullName = <span class="hljs-string">"George Abitbol"</span>;
+george.age = <span class="hljs-number">50</span>;
+
+<span class="hljs-built_in">console</span>.log(george.fullName);       <span class="hljs-comment">// "George Abitbol"</span>
+<span class="hljs-built_in">console</span>.log(george.getFullName());  <span class="hljs-comment">// "George Abitbol"</span>
+<span class="hljs-built_in">console</span>.log(george.old);            <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">console</span>.log(george.isOld());        <span class="hljs-comment">// false</span>
+
+george.setAge(<span class="hljs-number">80</span>);
+
+<span class="hljs-built_in">console</span>.log(george.old);            <span class="hljs-comment">// true</span></code></pre>
+
+<h2 id="annotations">Annotations</h2>
+<p>Abitbol classes supports annotations. To add annotations, just defines them in
+non-assigned strings <strong>at the top</strong> of the function:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyClass = Class.$extend({
+    <span class="hljs-attr">myMethod</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-string">"@annotation1 value"</span>;
+        <span class="hljs-string">"@annotation2"</span>;
+
+        <span class="hljs-comment">// ... Method's code here</span>
+    }
+});</code></pre>
+
+<p>The annotations are accessible through the <code>Class.$map</code> object:</p>
+<pre><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(MyClass.$map.methods.myMethod.annotations);
+
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//     annotation1: "value",</span>
+<span class="hljs-comment">//     annotation2: true</span>
+<span class="hljs-comment">// }</span></code></pre>
+
+<p>see the documentation about the <code>Class.$map</code> object bellow for more
+informations.</p>
+
+                </article>
+            </div>
+
+            <footer>
+                Copyright (c)  2015-2016 Wanadev
+- <a href="http://www.wandev.fr/">www.wanadev.fr</a><br />
+Unless otherwise specified, this documentation is published under the
+<a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
+Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
+
+            </footer>
+
+        </div>
+
+        <script>
+
+(function() {
+
+    var MENU_UNFOLDED_CLASS = "mobile-menu-unfolded";
+
+    var menuButton = document.getElementById("toggle-mobile-menu");
+    var menuItems = document.querySelectorAll(".content nav a");
+
+    function getAbsolutePosition(element) {
+        if (typeof(element) == "string") {
+            element = document.getElementById(element);
+        }
+        if (!(element instanceof Element)) {
+            return {x: 0, y: 0};
+        }
+
+        var css;
+        var origElement = element;
+
+        try {
+            css = getComputedStyle(element);
+        } catch (e) {
+            return {x: 0, y: 0};
+        }
+
+        if (!css) {
+            return {x: 0, y: 0};
+        }
+
+        var x = -parseInt(css.borderLeftWidth);
+        var y = -parseInt(css.borderTopWidth);
+
+        while (element.offsetParent) {
+            css = getComputedStyle(element);
+
+            x += element.offsetLeft || 0;
+            x += parseInt(css.borderLeftWidth);
+
+            y += element.offsetTop || 0;
+            y += parseInt(css.borderTopWidth);
+
+            element = element.offsetParent;
+        }
+
+        element = origElement;
+
+        while (element.parentNode && !(element instanceof HTMLBodyElement)) {
+            x -= element.scrollLeft || 0;
+            y -= element.scrollTop || 0;
+            element = element.parentNode;
+        }
+
+        return {x: x, y: y};
+    };
+
+    function openMenu() {
+        document.body.classList.add(MENU_UNFOLDED_CLASS);
+    }
+
+    function closeMenu() {
+        document.body.classList.remove(MENU_UNFOLDED_CLASS);
+    }
+
+    function toggleMenu() {
+        document.body.classList.toggle(MENU_UNFOLDED_CLASS);
+    }
+
+    function _onMenuItemClicked(event) {
+        var href = this.getAttribute("href");
+
+        if (href[0] != "#") {
+            return;
+        }
+
+        event.preventDefault();
+
+        var anchor = href.substr(1, href.length-1);
+        var anchorPosition = getAbsolutePosition(anchor);
+        document.scrollingElement.scrollTop = anchorPosition.y - menuButton.offsetHeight;
+
+        closeMenu();
+    }
+
+    menuButton.onclick = toggleMenu;
+    menuItems.forEach(function(item) {
+        item.onclick = _onMenuItemClicked;
+    });
+
+})();
+
+</script>
+
+    </body>
+
+</html>
