@@ -58,12 +58,6 @@
         
             
             <li>
-                <a href="getting-started.html" >Getting Started</a>
-                
-            </li>
-        
-            
-            <li>
                 <a href="using-abitbol.html" class="active">Using Abitbol</a>
                 
                     
@@ -72,17 +66,49 @@
     <ul class="toc">
         
             <li>
-                <a href="#defining-classes">Defining Classes</a>
+                <a href="#getting-abitbol">Getting Abitbol</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#standalone-version-browser-">Standalone Version (browser)</a>
                 
             </li>
         
             <li>
-                <a href="#creating-subclases">Creating Subclases</a>
+                <a href="#npm">NPM</a>
+                
+            </li>
+        
+    </ul>
+
+                
+            </li>
+        
+            <li>
+                <a href="#getting-started">Getting Started</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#defining-a-class">Defining a Class</a>
+                
+            </li>
+        
+            <li>
+                <a href="#subclassing">Subclassing</a>
                 
             </li>
         
             <li>
                 <a href="#using-your-classes">Using Your Classes</a>
+                
+            </li>
+        
+    </ul>
+
                 
             </li>
         
@@ -123,41 +149,63 @@
                 
                 <article>
                     <h1 id="using-abitbol">Using Abitbol</h1>
-<h2 id="defining-classes">Defining Classes</h2>
+<h2 id="getting-abitbol">Getting Abitbol</h2>
+<h3 id="standalone-version-browser-">Standalone Version (browser)</h3>
+<p>To use the standalone version, first <a href="https://github.com/wanadev/abitbol/archive/master.zip">download the latest zip</a> or clone
+the git repository:</p>
+<pre><code>git clone https://github.com/wanadev/abitbol.git
+</code></pre><p>Then, just include one of the javascript of the <code>dist/</code> folder:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"dist/abitbol.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<h3 id="npm">NPM</h3>
+<p>To use Abitbol with Node.js (or in the browser using <a href="http://browserify.org/">Browserify</a>), first
+install the library:</p>
+<pre><code>npm install --save abitbol
+</code></pre><p>Then require it when needed:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Class = <span class="hljs-built_in">require</span>(<span class="hljs-string">"abitbol"</span>);</code></pre>
+
+
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="defining-a-class">Defining a Class</h3>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Vehicle = Class.$extend({
-    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">color</span>) </span>{
+
+    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">color</span>) </span>{
         <span class="hljs-keyword">this</span>.color = color;
         <span class="hljs-keyword">this</span>.speed = <span class="hljs-number">0</span>;
     },
 
-    <span class="hljs-attr">move</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">speed</span>) </span>{
+    <span class="hljs-attr">move</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">speed</span>) </span>{
         <span class="hljs-keyword">this</span>.speed = speed;
     },
 
-    <span class="hljs-attr">stop</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-attr">stop</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">this</span>.speed = <span class="hljs-number">0</span>;
     }
+
 });</code></pre>
 
-<h2 id="creating-subclases">Creating Subclases</h2>
+<h3 id="subclassing">Subclassing</h3>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Car = Vehicle.$extend({
-    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">color</span>) </span>{
+
+    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">color</span>) </span>{
         <span class="hljs-keyword">this</span>.$<span class="hljs-keyword">super</span>(color);
         <span class="hljs-keyword">this</span>.maxSpeed = <span class="hljs-number">180</span>;
     },
 
-    <span class="hljs-attr">move</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">speed</span>) </span>{
+    <span class="hljs-attr">move</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">speed</span>) </span>{
         speed = <span class="hljs-built_in">Math</span>.min(speed, <span class="hljs-keyword">this</span>.maxSpeed);
         <span class="hljs-keyword">this</span>.$<span class="hljs-keyword">super</span>(speed);
     },
 
-    <span class="hljs-attr">horn</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-attr">horn</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
         alert(<span class="hljs-string">"BEEP BEEP"</span>);
     }
+
 });
 
 <span class="hljs-keyword">var</span> Truck = Car.$extend({
-    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">color</span>) </span>{
+
+    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">color</span>) </span>{
         <span class="hljs-keyword">this</span>.$<span class="hljs-keyword">super</span>(color);
         <span class="hljs-keyword">this</span>.maxSpeed = <span class="hljs-number">90</span>;
     },
@@ -165,15 +213,19 @@
     <span class="hljs-attr">horn</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
         alert(<span class="hljs-string">"HONK HONK"</span>);
     }
+
 });</code></pre>
 
-<h2 id="using-your-classes">Using Your Classes</h2>
+<h3 id="using-your-classes">Using Your Classes</h3>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> mustang = <span class="hljs-keyword">new</span> Car(<span class="hljs-string">"red"</span>);
 mustang.move(<span class="hljs-number">120</span>);
 mustang.horn();
 
 <span class="hljs-keyword">var</span> myTruck = <span class="hljs-keyword">new</span> Truck(<span class="hljs-string">"blue"</span>);
-myTruck <span class="hljs-keyword">instanceof</span> Car  <span class="hljs-comment">// true</span></code></pre>
+myTruck <span class="hljs-keyword">instanceof</span> Car;           <span class="hljs-comment">// true</span></code></pre>
+
+
+
 
 
 <h2 id="computed-properties-getters-and-setters-">Computed Properties (Getters and Setters)</h2>
@@ -257,7 +309,7 @@ informations.</p>
 
             <footer>
                 Copyright (c)  2015-2016 Wanadev
-- <a href="http://www.wandev.fr/">www.wanadev.fr</a><br />
+- <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
 Unless otherwise specified, this documentation is published under the
 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
 Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1

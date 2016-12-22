@@ -36,14 +36,14 @@ footer {
   height: 40px;
   line-height: 40px;
   text-align: center;
-  color: #ddd1ca;
+  color: #fbfaf9;
   cursor: pointer;
   background: #281F1A;
   font-size: 150%;
 }
 #toggle-mobile-menu:hover {
-  background: #47372e;
-  color: #ddd1ca;
+  background: #775a4b;
+  color: #fbfaf9;
 }
 nav.links {
   background: #281F1A;
@@ -64,11 +64,11 @@ nav.links ul li a {
   padding: 0 15px;
   text-decoration: none;
   background: #281F1A;
-  color: #ddd1ca;
+  color: #fbfaf9;
 }
 nav.links ul li a:hover {
-  background: #47372e;
-  color: #ddd1ca;
+  background: #775a4b;
+  color: #fbfaf9;
 }
 header {
   padding: 40px 0;
@@ -120,17 +120,17 @@ header h1 img {
   text-overflow: ellipsis;
   padding: 0 10px;
   background: #EFE4D1;
-  box-shadow: inset -5px 0 5px -5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset -5px 0 5px -5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 .content nav ul li a:hover,
 .content nav ul li a.active {
   background-color: #e8d9be;
   color: #111;
-  box-shadow: inset 5px 0 0 #281F1A, inset -5px 0 5px -5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 5px 0 0 #584237, inset -5px 0 5px -5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 .content nav > ul.toc,
 .content nav > ul.menu > li > ul.toc {
-  box-shadow: inset -5px 0 5px -5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset -5px 0 5px -5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   padding: 0 0 1px 0;
 }
 .content nav > ul.toc li a,
@@ -142,9 +142,9 @@ header h1 img {
 }
 .content nav > ul.toc li a:hover,
 .content nav > ul.menu > li > ul.toc li a:hover {
-  color: #564338;
+  color: #876554;
   background: #fff;
-  box-shadow: inset 5px 0 0 #281F1A, inset -5px 0 5px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 5px 0 0 #584237, inset -5px 0 5px -5px rgba(0, 0, 0, 0.3);
 }
 .content nav > ul.toc ul.toc a,
 .content nav > ul.menu > li > ul.toc ul.toc a {
@@ -168,39 +168,39 @@ header h1 img {
   font-family: Arial, sans-serif;
   font-weight: normal;
   line-height: 1.5em;
-  color: #281F1A;
+  color: #584237;
 }
 .content article h1 {
   line-height: 1em;
   margin: 0px -20px 30px -20px;
   padding: 0 20px 15px 20px;
   font-size: 240%;
-  border-bottom: #281F1A solid 2px;
-  color: #281F1A;
+  border-bottom: #584237 solid 2px;
+  color: #584237;
 }
 .content article h2 {
   margin: 60px 0 15px -20px;
   font-size: 170%;
-  border-left: #281F1A solid 5px;
+  border-left: #584237 solid 5px;
   padding-left: 15px;
-  color: #281F1A;
+  color: #584237;
 }
 .content article h3 {
   margin: 40px 0 15px 0;
   font-size: 130%;
-  color: #281F1A;
+  color: #584237;
 }
 .content article h4 {
-  color: #281F1A;
+  color: #584237;
   font-size: 100%;
   padding-left: 30px;
 }
 .content article code {
   font-family: monospace;
-  color: #281F1A;
+  color: #584237;
 }
 .content article a {
-  color: #281F1A;
+  color: #584237;
 }
 .content article img {
   max-width: 100%;
@@ -232,7 +232,7 @@ header h1 img {
   margin-right: -20px;
   padding: 0 20px;
   background: #E2D6C3;
-  color: #281F1A;
+  color: #584237;
   border-top: transparent solid 1px;
   border-bottom: transparent solid 1px;
   font-style: italic;
@@ -255,11 +255,11 @@ header h1 img {
 }
 footer {
   font-size: 70%;
-  color: #47372e;
+  color: #775a4b;
   text-align: center;
 }
 footer a {
-  color: #47372e;
+  color: #775a4b;
 }
 .header-reduced header {
   padding: 20px;

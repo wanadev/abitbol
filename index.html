@@ -58,12 +58,6 @@
         
             
             <li>
-                <a href="getting-started.html" >Getting Started</a>
-                
-            </li>
-        
-            
-            <li>
                 <a href="using-abitbol.html" >Using Abitbol</a>
                 
             </li>
@@ -87,9 +81,14 @@
                     </nav>
                 
                 <article>
-                    <p>Abitbol is a small Javascript library that provides consistent/easy to use
+                    <p><strong>Abitbol</strong> is a small Javascript library that provides consistent / easy to use
 classes for Node.js and web browsers. It is heavily inspired by  Armin
 Ronacher&#39;s <a href="https://github.com/mitsuhiko/classy">Classy</a> library, but extends its possibilities.</p>
+<p><img src="http://pix.toile-libre.org/upload/original/1439302256.png" alt="George Abitbol"></p>
+<blockquote>
+<p>The classiest javascript class library of the world<br />
+-- George Abitbol</p>
+</blockquote>
 <p><strong>Features:</strong></p>
 <ul>
 <li>Simple inheritance</li>
@@ -100,11 +99,24 @@ Ronacher&#39;s <a href="https://github.com/mitsuhiko/classy">Classy</a> library,
 <li>Simple way to declare static properties</li>
 <li>Handful mixin</li>
 </ul>
-<p><img src="http://pix.toile-libre.org/upload/original/1439302256.png" alt="George Abitbol"></p>
-<blockquote>
-<p>The classiest javascript class library of the world
--- George Abitbol</p>
-</blockquote>
+<p><strong>Exemple class definition:</strong></p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Vehicle = Class.$extend({
+
+    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">color</span>) </span>{
+        <span class="hljs-keyword">this</span>.color = color;
+        <span class="hljs-keyword">this</span>.speed = <span class="hljs-number">0</span>;
+    },
+
+    <span class="hljs-attr">move</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">speed</span>) </span>{
+        <span class="hljs-keyword">this</span>.speed = speed;
+    },
+
+    <span class="hljs-attr">stop</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">this</span>.speed = <span class="hljs-number">0</span>;
+    }
+
+});</code></pre>
+
 <h2 id="changelog">Changelog</h2>
 <ul>
 <li><strong>1.1.0</strong>: Adds ES2015 support in the annotation parser</li>
@@ -124,7 +136,7 @@ monkey-patched.</li>
 
             <footer>
                 Copyright (c)  2015-2016 Wanadev
-- <a href="http://www.wandev.fr/">www.wanadev.fr</a><br />
+- <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
 Unless otherwise specified, this documentation is published under the
 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
 Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
