@@ -55,6 +55,7 @@ var Vehicle = Class.$extend({
 
 ## Changelog
 
+* **1.1.1**: Updates doc and README
 * **1.1.0**: Adds ES2015 support in the annotation parser
 * **1.0.4**: Updates dependencies
 * **1.0.3**: Allows computed properties' accessors and mutators to be
