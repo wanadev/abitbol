@@ -4,9 +4,14 @@ autotoc: false
 menuOrder: 0
 ---
 
-Abitbol is a small Javascript library that provides consistent/easy to use
+**Abitbol** is a small Javascript library that provides consistent / easy to use
 classes for Node.js and web browsers. It is heavily inspired by  Armin
 Ronacher's [Classy][] library, but extends its possibilities.
+
+![George Abitbol](http://pix.toile-libre.org/upload/original/1439302256.png)
+
+> The classiest javascript class library of the world<br />
+> -- George Abitbol
 
 **Features:**
 
@@ -18,12 +23,26 @@ Ronacher's [Classy][] library, but extends its possibilities.
 * Simple way to declare static properties
 * Handful mixin
 
-![George Abitbol](http://pix.toile-libre.org/upload/original/1439302256.png)
+**Exemple class definition:**
 
-> The classiest javascript class library of the world
-> -- George Abitbol
+```javascript
+var Vehicle = Class.$extend({
 
+    __init__: function(color) {
+        this.color = color;
+        this.speed = 0;
+    },
 
+    move: function(speed) {
+        this.speed = speed;
+    },
+
+    stop: function() {
+        this.speed = 0;
+    }
+
+});
+```
 
 ## Changelog
 

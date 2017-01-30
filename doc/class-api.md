@@ -47,11 +47,11 @@ var MyClass = Class.$extend({
 
 ### Class.$extend(properties)
 
-Creates a new class that extends the given class.
+Creates a new class that extends the current class.
 
 ### Class.$class
 
-The class object for this instance.
+A reference to the current class.
 
 ### Class.$map
 
@@ -62,7 +62,7 @@ An object that contains the class' map (list of methods, attributes,...).
     attributes: {
         attr1: true,
         attr2: true,
-        ...
+        // ...
     },
     methods: {
         meth1: {
@@ -73,7 +73,7 @@ An object that contains the class' map (list of methods, attributes,...).
         meth2: {
             annotations: {}
         },
-        ...
+        // ...
     },
     computedProperties: {
         prop1: {
@@ -87,7 +87,7 @@ An object that contains the class' map (list of methods, attributes,...).
             get: "isProp2",
             annotations: {}
         },
-        ...
+        // ...
     }
 }
 ```
@@ -96,18 +96,18 @@ An object that contains the class' map (list of methods, attributes,...).
 
 ### classInstance.$class
 
-The class object for this instance.
+See [`Class.$class`](#class-class) above.
 
 ### classInstance.$map
 
-TODO
+See [`Class.$map`](#class-map) above.
 
 
 ## Instance Internal Methods and Properties
 
 ### this.$super()
 
-From a method: invokes the corresponding super class method.
+From a method: invokes the corresponding super class' method.
 
 ### this.$name
 
@@ -115,21 +115,9 @@ From a method: the current method's name.
 
 ### this.$computedPropertyName
 
-From a getter/setter method: the name of the related computed property.
+From a getter / setter method: the name of the related computed property.
 
 ### this.$data
 
 An object to store ~~private~~ internal properties (to store computed
 properties' values for example).
-
-
-
-
-
-
-
-
-
-
-
-
