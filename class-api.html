@@ -223,16 +223,16 @@
 
 <h2 id="static-methods-and-attributes">Static Methods and Attributes</h2>
 <h3 id="class-extend-properties-">Class.$extend(properties)</h3>
-<p>Creates a new class that extends the given class.</p>
+<p>Creates a new class that extends the current class.</p>
 <h3 id="class-class">Class.$class</h3>
-<p>The class object for this instance.</p>
+<p>A reference to the current class.</p>
 <h3 id="class-map">Class.$map</h3>
 <p>An object that contains the class' map (list of methods, attributes,...).</p>
 <pre><code class="hljs javascript">{
     <span class="hljs-attr">attributes</span>: {
         <span class="hljs-attr">attr1</span>: <span class="hljs-literal">true</span>,
         <span class="hljs-attr">attr2</span>: <span class="hljs-literal">true</span>,
-        ...
+        <span class="hljs-comment">// ...</span>
     },
     <span class="hljs-attr">methods</span>: {
         <span class="hljs-attr">meth1</span>: {
@@ -243,7 +243,7 @@
         <span class="hljs-attr">meth2</span>: {
             <span class="hljs-attr">annotations</span>: {}
         },
-        ...
+        <span class="hljs-comment">// ...</span>
     },
     <span class="hljs-attr">computedProperties</span>: {
         <span class="hljs-attr">prop1</span>: {
@@ -257,22 +257,22 @@
             <span class="hljs-attr">get</span>: <span class="hljs-string">"isProp2"</span>,
             <span class="hljs-attr">annotations</span>: {}
         },
-        ...
+        <span class="hljs-comment">// ...</span>
     }
 }</code></pre>
 
 <h2 id="instance-properties">Instance Properties</h2>
 <h3 id="classinstance-class">classInstance.$class</h3>
-<p>The class object for this instance.</p>
+<p>See <a href="#class-class"><code>Class.$class</code></a> above.</p>
 <h3 id="classinstance-map">classInstance.$map</h3>
-<p>TODO</p>
+<p>See <a href="#class-map"><code>Class.$map</code></a> above.</p>
 <h2 id="instance-internal-methods-and-properties">Instance Internal Methods and Properties</h2>
 <h3 id="this-super-">this.$super()</h3>
-<p>From a method: invokes the corresponding super class method.</p>
+<p>From a method: invokes the corresponding super class' method.</p>
 <h3 id="this-name">this.$name</h3>
 <p>From a method: the current method's name.</p>
 <h3 id="this-computedpropertyname">this.$computedPropertyName</h3>
-<p>From a getter/setter method: the name of the related computed property.</p>
+<p>From a getter / setter method: the name of the related computed property.</p>
 <h3 id="this-data">this.$data</h3>
 <p>An object to store <del>private</del> internal properties (to store computed
 properties' values for example).</p>
@@ -281,7 +281,7 @@ properties' values for example).</p>
             </div>
 
             <footer>
-                Copyright (c)  2015-2016 Wanadev
+                Copyright (c)  2015-2017 Wanadev
 - <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
 Unless otherwise specified, this documentation is published under the
 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
