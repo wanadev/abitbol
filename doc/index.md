@@ -21,7 +21,7 @@ Ronacher's [Classy][] library, but extends its possibilities.
 * Computed properties automatically generated from getters and setters
 * Simple way to call a super class method
 * Simple way to declare static properties
-* Handful mixin
+* Handy mixin
 
 **Exemple class definition:**
 
