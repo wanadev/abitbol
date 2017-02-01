@@ -111,7 +111,7 @@ myTruck instanceof Car;           // true
 
 ## Computed Properties (Getters and Setters)
 
-Abitbol allows you to creates computed properties simply by defining getters
+Abitbol allows you to create computed properties simply by defining getters
 and setters:
 
 ```javascript
@@ -171,7 +171,7 @@ console.log(george.old);            // true
 
 ## Annotations
 
-Abitbol classes supports annotations. To add annotations, just defines them in
+Abitbol classes support annotations. To add annotations, just define them in
 non-assigned strings **at the top** of the function:
 
 ```javascript
