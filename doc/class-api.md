@@ -14,7 +14,7 @@ The constructor method.
 
 ### Class.`__`include`__`
 
-A list of objects that contains properties to mix in the class.
+A list of objects that contain properties to mix in the class.
 
 ```javascript
 
