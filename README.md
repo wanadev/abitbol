@@ -1,5 +1,7 @@
 # Abitbol
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/abitbol.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/wanadev/abitbol.svg?branch=master)](https://travis-ci.org/wanadev/abitbol)
 [![NPM Version](http://img.shields.io/npm/v/abitbol.svg?style=flat)](https://www.npmjs.com/package/abitbol)
 [![License](http://img.shields.io/npm/l/abitbol.svg?style=flat)](https://github.com/wanadev/abitbol/blob/master/LICENSE)
