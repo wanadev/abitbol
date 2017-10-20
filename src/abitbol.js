@@ -93,13 +93,27 @@ Object.defineProperty(Class, "$extend", {
         var computedPropertyName;
         var annotations;
         var i;
+        var mixin;
+        var staticProperty;
+
+        // Add static properties list
+        if (!properties.__classvars__) {
+            properties.__classvars__ = {};
+        }
 
         // Copy properties from mixins
         if (properties.__include__) {
             for (i = properties.__include__.length - 1 ; i >= 0 ; i--) {
-                for (property in properties.__include__[i]) {
-                    if (properties[property] === undefined) {
-                        properties[property] = properties.__include__[i][property];
+                mixin = properties.__include__[i];
+                for (property in mixin) {
+                    if (property == "__classvars__") {
+                        for (staticProperty in mixin.__classvars__) {
+                            if (properties.__classvars__[staticProperty] === undefined) {
+                                properties.__classvars__[staticProperty] = mixin.__classvars__[staticProperty];
+                            }
+                        }
+                    } else if (properties[property] === undefined) {
+                        properties[property] = mixin[property];
                     }
                 }
             }
@@ -206,10 +220,8 @@ Object.defineProperty(Class, "$extend", {
         }
 
         // Add static properties
-        if (properties.__classvars__) {
-            for (property in properties.__classvars__) {
-                __class__[property] = properties.__classvars__[property];
-            }
+        for (property in properties.__classvars__) {
+            __class__[property] = properties.__classvars__[property];
         }
 
         // Add abitbol static properties

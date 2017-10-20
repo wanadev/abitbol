@@ -377,8 +377,22 @@ describe("Class", function () {
 
             expect(Cls1.prototype.attr1).to.equal("inc2");
         });
+        
+        it("adds static properties", function () {
+            var Cls = Class.$extend({
+                __include__: [
+                    {
+                        __classvars__: {
+                            static: "static"
+                        }
+                    },
+                ]
+            });
 
-        it("merges classvars in the order of appearance", function () {
+            expect(Cls.static).to.equal("static");
+        });
+
+        it("merges static properties in the order of appearance", function () {
             var Cls = Class.$extend({
                 __include__: [
                     {
