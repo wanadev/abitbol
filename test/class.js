@@ -377,7 +377,7 @@ describe("Class", function () {
 
             expect(Cls1.prototype.attr1).to.equal("inc2");
         });
-        
+
         it("adds static properties", function () {
             var Cls = Class.$extend({
                 __include__: [

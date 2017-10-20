@@ -94,12 +94,6 @@ Object.defineProperty(Class, "$extend", {
         var annotations;
         var i;
         var mixin;
-        var staticProperty;
-
-        // Add static properties list
-        if (!properties.__classvars__) {
-            properties.__classvars__ = {};
-        }
 
         // Copy properties from mixins
         if (properties.__include__) {
@@ -107,13 +101,21 @@ Object.defineProperty(Class, "$extend", {
                 mixin = properties.__include__[i];
                 for (property in mixin) {
                     if (property == "__classvars__") {
-                        for (staticProperty in mixin.__classvars__) {
-                            if (properties.__classvars__[staticProperty] === undefined) {
-                                properties.__classvars__[staticProperty] = mixin.__classvars__[staticProperty];
-                            }
-                        }
+                        continue;
                     } else if (properties[property] === undefined) {
                         properties[property] = mixin[property];
+                    }
+                }
+
+                // Merging mixin's static properties
+                if (mixin.__classvars__) {
+                    if (!properties.__classvars__) {
+                        properties.__classvars__ = {};
+                    }
+                    for (property in mixin.__classvars__) {
+                        if (properties.__classvars__[property] === undefined) {
+                            properties.__classvars__[property] = mixin.__classvars__[property];
+                        }
                     }
                 }
             }
@@ -220,8 +222,10 @@ Object.defineProperty(Class, "$extend", {
         }
 
         // Add static properties
-        for (property in properties.__classvars__) {
-            __class__[property] = properties.__classvars__[property];
+        if (properties.__classvars__) {
+            for (property in properties.__classvars__) {
+                __class__[property] = properties.__classvars__[property];
+            }
         }
 
         // Add abitbol static properties
