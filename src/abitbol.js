@@ -93,13 +93,29 @@ Object.defineProperty(Class, "$extend", {
         var computedPropertyName;
         var annotations;
         var i;
+        var mixin;
 
         // Copy properties from mixins
         if (properties.__include__) {
             for (i = properties.__include__.length - 1 ; i >= 0 ; i--) {
-                for (property in properties.__include__[i]) {
-                    if (properties[property] === undefined) {
-                        properties[property] = properties.__include__[i][property];
+                mixin = properties.__include__[i];
+                for (property in mixin) {
+                    if (property == "__classvars__") {
+                        continue;
+                    } else if (properties[property] === undefined) {
+                        properties[property] = mixin[property];
+                    }
+                }
+
+                // Merging mixin's static properties
+                if (mixin.__classvars__) {
+                    if (!properties.__classvars__) {
+                        properties.__classvars__ = {};
+                    }
+                    for (property in mixin.__classvars__) {
+                        if (properties.__classvars__[property] === undefined) {
+                            properties.__classvars__[property] = mixin.__classvars__[property];
+                        }
                     }
                 }
             }

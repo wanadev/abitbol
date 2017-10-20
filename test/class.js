@@ -378,6 +378,60 @@ describe("Class", function () {
             expect(Cls1.prototype.attr1).to.equal("inc2");
         });
 
+        it("adds static properties", function () {
+            var Cls = Class.$extend({
+                __include__: [
+                    {
+                        __classvars__: {
+                            static: "static"
+                        }
+                    },
+                ]
+            });
+
+            expect(Cls.static).to.equal("static");
+        });
+
+        it("merges static properties in the order of appearance", function () {
+            var Cls = Class.$extend({
+                __include__: [
+                    {
+                        __classvars__: {
+                            static1a: 1,
+                            static1b: 1,
+                            static1c: 1,
+                            static1d: 1
+                        }
+                    },
+                    {
+                        // No __classvars__
+                    },
+                    {
+                        __classvars__: {
+                            static1b: 2,
+                            static1c: 2,
+                            static2a: 2,
+                            static2b: 2
+                        }
+                    }
+                ],
+
+                __classvars__: {
+                    static1c: 3,
+                    static1d: 3,
+                    static2b: 3,
+                    static3a: 3
+                }
+            });
+
+            expect(Cls.static1a).to.equal(1);
+            expect(Cls.static1b).to.equal(2);
+            expect(Cls.static1c).to.equal(3);
+            expect(Cls.static1d).to.equal(3);
+            expect(Cls.static2a).to.equal(2);
+            expect(Cls.static2b).to.equal(3);
+            expect(Cls.static3a).to.equal(3);
+        });
     });
 
     describe("static properties", function () {
