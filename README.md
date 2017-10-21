@@ -56,6 +56,7 @@ var Vehicle = Class.$extend({
 
 ## Changelog
 
+* **1.2.0:** Support static method/properties in mixin
 * **1.1.1**: Updates doc and README
 * **1.1.0**: Adds ES2015 support in the annotation parser
 * **1.0.4**: Updates dependencies

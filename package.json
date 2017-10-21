@@ -1,6 +1,6 @@
 {
   "name": "abitbol",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "The classiest javascript class library of the world",
   "homepage": "https://wanadev.github.io/abitbol/",
   "main": "src/abitbol.js",
