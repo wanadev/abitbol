@@ -89,8 +89,10 @@ Object.defineProperty(Class, "$extend", {
         __class__.prototype = inherit(this.$class);
 
         properties = properties || {};
-        if (properties.__preBuild__) {
-            properties.__preBuild__(properties, __class__, _superClass);
+
+        var _preBuildHook = properties.__preBuild__ || _superClass.prototype.__preBuild__;
+        if (_preBuildHook) {
+            _preBuildHook(properties, __class__, _superClass);
         }
 
         var property;
@@ -246,8 +248,9 @@ Object.defineProperty(Class, "$extend", {
             value: _classMap
         });
 
-        if (properties.__postBuild__) {
-            properties.__postBuild__(properties, __class__, _superClass);
+        var _postBuildHook = properties.__postBuild__ || _superClass.prototype.__postBuild__;
+        if (_postBuildHook) {
+            _postBuildHook(properties, __class__, _superClass);
         }
 
         return __class__;

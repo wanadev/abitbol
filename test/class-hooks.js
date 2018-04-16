@@ -24,6 +24,31 @@ describe("Class hooks", function () {
         expect($post).to.ok();
     });
 
+    it("are called for pre and post build with inheritance", function () {
+        var $pre = 0;
+        var $post = 0;
+
+        var Cls0 = Class.$extend({
+            __preBuild__: function () {
+                $pre++;
+            },
+
+            __postBuild__: function () {
+                $post++;
+            }
+        });
+        var Cls1 = Cls0.$extend();
+        var Cls2 = Cls1.$extend();
+        var Cls3 = Cls2.$extend({
+            __postBuild__: function () {
+                // Not incrementing
+            }
+        });
+
+        expect($pre).to.equal(4);
+        expect($post).to.equal(3);
+    });
+
     it("passes correct arguments", function () {
         var clsProperties = {
             __preBuild__: function (properties, NewClass, SuperClass) {
