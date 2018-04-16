@@ -89,6 +89,10 @@ Object.defineProperty(Class, "$extend", {
         __class__.prototype = inherit(this.$class);
 
         properties = properties || {};
+        if (properties.__preBuild__) {
+            properties.__preBuild__(properties, __class__, _superClass);
+        }
+
         var property;
         var computedPropertyName;
         var annotations;
@@ -241,6 +245,10 @@ Object.defineProperty(Class, "$extend", {
             enumerable: false,
             value: _classMap
         });
+
+        if (properties.__postBuild__) {
+            properties.__postBuild__(properties, __class__, _superClass);
+        }
 
         return __class__;
     }

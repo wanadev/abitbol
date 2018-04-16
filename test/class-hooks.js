@@ -28,14 +28,14 @@ describe("Class hooks", function () {
         var clsProperties = {
             __preBuild__: function (properties, NewClass, SuperClass) {
                 expect(properties).to.equal(clsProperties);
-                expect(NewClass).to.be.a(Class);
-                expect(SuperClass).to.be.a(Class);
+                expect(NewClass.prototype).to.be.a(Class);
+                expect(SuperClass).to.equal(Class);
             },
 
             __postBuild__: function (properties, NewClass, SuperClass) {
                 expect(properties).to.equal(clsProperties);
-                expect(NewClass).to.be.a(Class);
-                expect(SuperClass).to.be.a(Class);
+                expect(NewClass.prototype).to.be.a(Class);
+                expect(SuperClass).to.equal(Class);
             }
         };
 
@@ -103,5 +103,7 @@ describe("Class hooks", function () {
 
         expect(Cls.StaticProp).to.be.ok();
     });
+
+    // @todo Test inherance
 
 });
