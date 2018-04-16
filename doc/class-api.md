@@ -17,7 +17,6 @@ The constructor method.
 A list of objects that contain properties to mix in the class.
 
 ```javascript
-
 var Boat = Vehicle.$extend({
     __include__: [{
         horn: Truck.prototype.horn
@@ -38,6 +37,22 @@ var MyClass = Class.$extend({
     __classvars__: {
         staticAttribute: "value",
         staticMethod: function () {}
+    }
+});
+```
+
+### Class.`__`preBuild`__` and Class.`__`postBuild`__`
+
+Functions that are called during the evaluation of `$extend()`.
+Theses allow to mutate the properties and are inherited.
+
+```javascript
+var Boat = Vehicle.$extend({
+    __preBuild__: function (properties, NewClass, SuperClass) {
+        // Mutates the properties before they are analysed by abitbol
+        properties.isNice = function () {
+            return true;
+        }
     }
 });
 ```
