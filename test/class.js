@@ -403,9 +403,8 @@ describe("Class", function () {
                             static1d: 1
                         }
                     },
-                    {
-                        // No __classvars__
-                    },
+                    // No __classvars__
+                    {},
                     {
                         __classvars__: {
                             static1b: 2,
