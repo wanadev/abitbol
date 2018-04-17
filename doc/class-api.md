@@ -43,20 +43,16 @@ var MyClass = Class.$extend({
 
 ### Class.`__`preBuild`__` and Class.`__`postBuild`__`
 
-Functions that are called during the evaluation of `$extend()`.
-Theses allow to mutate the properties and are inherited.
+Those static methods are hooks that are called at the beginning
+(`__preBuild__`) and at the end (`__postBuild__`) of the Class building
+process.
 
-```javascript
-var Boat = Vehicle.$extend({
-    __preBuild__: function (properties, NewClass, SuperClass) {
-        // Mutates the properties before they are analysed by abitbol
-        properties.isNice = function () {
-            return true;
-        }
-    }
-});
-```
+These methods can be used to mutate the generated class (modifying properties,
+implementing new patterns, and so on).
 
+Please note that those methods are inherited like any other properties. Also
+note that these methods are called without the usual Abitbol context (no `this`, nor
+`this.$super()`).
 
 ## Static Methods and Attributes
 
