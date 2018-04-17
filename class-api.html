@@ -92,6 +92,11 @@
                 
             </li>
         
+            <li>
+                <a href="#class-__-prebuild-__-and-class-__-postbuild-__-">Class.<code>__</code>preBuild<code>__</code> and Class.<code>__</code>postBuild<code>__</code></a>
+                
+            </li>
+        
     </ul>
 
                 
@@ -220,6 +225,23 @@
     }
 });</code></pre>
 
+<h3 id="class-__-prebuild-__-and-class-__-postbuild-__-">Class.<code>__</code>preBuild<code>__</code> and Class.<code>__</code>postBuild<code>__</code></h3>
+<p>Those static methods are hooks that are called at the beginning
+(<code>__preBuild__</code>) and at the end (<code>__postBuild__</code>) of the Class building
+process.</p>
+<p>These methods can be used to mutate the generated class (modifying properties,
+implementing new patterns, and so on).</p>
+<p>Please note that those methods are inherited like any other properties. Also
+note that these methods are called without the usual Abitbol context (no <code>this</code>, nor
+<code>this.$super()</code>).</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Boat = Vehicle.$extend({
+    <span class="hljs-attr">__preBuild__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">properties, NewClass, SuperClass</span>) </span>{
+        <span class="hljs-comment">// Mutates the properties before they are analysed by abitbol</span>
+        properties.isNice = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+    }
+});</code></pre>
 
 <h2 id="static-methods-and-attributes">Static Methods and Attributes</h2>
 <h3 id="class-extend-properties-">Class.$extend(properties)</h3>
@@ -281,7 +303,7 @@ properties' values for example).</p>
             </div>
 
             <footer>
-                Copyright (c)  2015-2017 Wanadev
+                Copyright (c)  2015-2018 Wanadev
 - <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
 Unless otherwise specified, this documentation is published under the
 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
