@@ -56,6 +56,8 @@ var Vehicle = Class.$extend({
 
 ## Changelog
 
+* **2.0.0:** New pre/post build hooks that allows to implement new patterns on
+  Abitbol Classes.
 * **1.2.0:** Support static method/properties in mixin
 * **1.1.1**: Updates doc and README
 * **1.1.0**: Adds ES2015 support in the annotation parser
