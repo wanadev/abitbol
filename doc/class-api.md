@@ -54,6 +54,17 @@ Please note that those methods are inherited like any other properties. Also
 note that these methods are called without the usual Abitbol context (no `this`, nor
 `this.$super()`).
 
+```javascript
+var Boat = Vehicle.$extend({
+    __preBuild__: function (properties, NewClass, SuperClass) {
+        // Mutates the properties before they are analysed by abitbol
+        properties.isNice = function () {
+            return true;
+        }
+    }
+});
+```
+
 ## Static Methods and Attributes
 
 ### Class.$extend(properties)
