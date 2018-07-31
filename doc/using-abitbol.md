@@ -197,6 +197,11 @@ console.log(MyClass.$map.methods.myMethod.annotations);
 // }
 ```
 
+> **WARNING when using minification:** Since **v3.4**, **UglifyJS** has a new
+> option, `directives`, that is enabled by default. This option breaks Abitbol
+> annotations (it removes the annotations in the minified version of the code).
+> You should disabled it if you want to use annotations.
+
 
 [dl-zip]: https://github.com/wanadev/abitbol/archive/master.zip
 [Browserify]: http://browserify.org/
