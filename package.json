@@ -27,7 +27,7 @@
     "grunt-jscs": "^3.0.1",
     "grunt-mocha-test": "^0.13.3",
     "jscs-preset-loris": "^1.2.0",
-    "mocha": "^5.1.0"
+    "mocha": "^6.0.0"
   },
   "enlightme": {
     "appName": "Abitbol"
