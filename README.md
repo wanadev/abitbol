@@ -56,6 +56,7 @@ var Vehicle = Class.$extend({
 
 ## Changelog
 
+* **2.0.1:** Optimization of special properties detection (@jbghoul, #23)
 * **2.0.0:** New pre/post build hooks that allows to implement new patterns on
   Abitbol Classes.
 * **1.2.0:** Support static method/properties in mixin
