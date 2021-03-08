@@ -14,7 +14,10 @@ function inherit(SuperClass) {
 
 // Checks if the given function uses abitbol special properties ($super, $name,...)
 function usesSpecialProperty(fn) {
-    return Boolean(fn.toString().match(/.*(\$super|\$name|\$computedPropertyName).*/));
+    var fnString = fn.toString();
+    return fnString.indexOf("$super") > -1
+        || fnString.indexOf("$name") > -1
+        || fnString.indexOf("$computedPropertyName") > -1
 }
 
 var Class = function () {};
