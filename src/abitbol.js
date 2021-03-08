@@ -17,7 +17,7 @@ function usesSpecialProperty(fn) {
     var fnString = fn.toString();
     return fnString.indexOf("$super") > -1
         || fnString.indexOf("$name") > -1
-        || fnString.indexOf("$computedPropertyName") > -1
+        || fnString.indexOf("$computedPropertyName") > -1;
 }
 
 var Class = function () {};
