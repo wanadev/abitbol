@@ -78,22 +78,22 @@
     <ul class="toc">
         
             <li>
-                <a href="#class-__-init-__-">Class.<code>__</code>init<code>__</code>()</a>
+                <a href="#class-__init__-">Class.__init__()</a>
                 
             </li>
         
             <li>
-                <a href="#class-__-include-__-">Class.<code>__</code>include<code>__</code></a>
+                <a href="#class-__include__">Class.__include__</a>
                 
             </li>
         
             <li>
-                <a href="#class-__-classvars-__-">Class.<code>__</code>classvars<code>__</code></a>
+                <a href="#class-__classvars__">Class.__classvars__</a>
                 
             </li>
         
             <li>
-                <a href="#class-__-prebuild-__-and-class-__-postbuild-__-">Class.<code>__</code>preBuild<code>__</code> and Class.<code>__</code>postBuild<code>__</code></a>
+                <a href="#class-__prebuild__-and-class-__postbuild__">Class.__preBuild__ and Class.__postBuild__</a>
                 
             </li>
         
@@ -202,9 +202,9 @@
                 <article>
                     <h1 id="abitbol-class-api">Abitbol Class API</h1>
 <h2 id="class-special-properties">Class Special Properties</h2>
-<h3 id="class-__-init-__-">Class.<code>__</code>init<code>__</code>()</h3>
+<h3 id="class-__init__-">Class.<code>__</code>init<code>__</code>()</h3>
 <p>The constructor method.</p>
-<h3 id="class-__-include-__-">Class.<code>__</code>include<code>__</code></h3>
+<h3 id="class-__include__">Class.<code>__</code>include<code>__</code></h3>
 <p>A list of objects that contain properties to mix in the class.</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Boat = Vehicle.$extend({
     <span class="hljs-attr">__include__</span>: [{
@@ -216,7 +216,7 @@
     }
 });</code></pre>
 
-<h3 id="class-__-classvars-__-">Class.<code>__</code>classvars<code>__</code></h3>
+<h3 id="class-__classvars__">Class.<code>__</code>classvars<code>__</code></h3>
 <p>An object containing static properties of the class.</p>
 <pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyClass = Class.$extend({
     <span class="hljs-attr">__classvars__</span>: {
@@ -225,7 +225,7 @@
     }
 });</code></pre>
 
-<h3 id="class-__-prebuild-__-and-class-__-postbuild-__-">Class.<code>__</code>preBuild<code>__</code> and Class.<code>__</code>postBuild<code>__</code></h3>
+<h3 id="class-__prebuild__-and-class-__postbuild__">Class.<code>__</code>preBuild<code>__</code> and Class.<code>__</code>postBuild<code>__</code></h3>
 <p>Those static methods are hooks that are called at the beginning
 (<code>__preBuild__</code>) and at the end (<code>__postBuild__</code>) of the Class building
 process.</p>
@@ -249,7 +249,7 @@ note that these methods are called without the usual Abitbol context (no <code>t
 <h3 id="class-class">Class.$class</h3>
 <p>A reference to the current class.</p>
 <h3 id="class-map">Class.$map</h3>
-<p>An object that contains the class' map (list of methods, attributes,...).</p>
+<p>An object that contains the class&#39; map (list of methods, attributes,...).</p>
 <pre><code class="hljs javascript">{
     <span class="hljs-attr">attributes</span>: {
         <span class="hljs-attr">attr1</span>: <span class="hljs-literal">true</span>,
@@ -290,20 +290,20 @@ note that these methods are called without the usual Abitbol context (no <code>t
 <p>See <a href="#class-map"><code>Class.$map</code></a> above.</p>
 <h2 id="instance-internal-methods-and-properties">Instance Internal Methods and Properties</h2>
 <h3 id="this-super-">this.$super()</h3>
-<p>From a method: invokes the corresponding super class' method.</p>
+<p>From a method: invokes the corresponding super class&#39; method.</p>
 <h3 id="this-name">this.$name</h3>
-<p>From a method: the current method's name.</p>
+<p>From a method: the current method&#39;s name.</p>
 <h3 id="this-computedpropertyname">this.$computedPropertyName</h3>
 <p>From a getter / setter method: the name of the related computed property.</p>
 <h3 id="this-data">this.$data</h3>
 <p>An object to store <del>private</del> internal properties (to store computed
-properties' values for example).</p>
+properties&#39; values for example).</p>
 
                 </article>
             </div>
 
             <footer>
-                Copyright (c)  2015-2018 Wanadev
+                Copyright (c)  2015-2022 Wanadev
 - <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
 Unless otherwise specified, this documentation is published under the
 <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
