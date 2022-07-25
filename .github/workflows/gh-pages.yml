@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - master
-      - migrate-ci
+    paths:
+      - doc/**
+      - .github/workflow/gh-pages.yml
 
 jobs:
 
