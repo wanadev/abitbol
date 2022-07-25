@@ -1,0 +1,42 @@
+name: "Build and deploy Github pages"
+
+on:
+  push:
+    branches:
+      - master
+      - migrate-ci
+
+jobs:
+
+  build-and-deploy:
+
+    name: "Build and deploy Enlightme documentation"
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: "Checkout the repository"
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          submodules: true
+
+      - name: "Set up Node"
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: "Install Node dependancies"
+        run: |
+          npm install
+
+      - name: "Build Doc"
+        run: |
+          npx enlightme
+
+      - name: "Deploy Github Pages"
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: doc.generated
