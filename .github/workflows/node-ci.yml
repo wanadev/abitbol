@@ -1,0 +1,39 @@
+name: "Lint and Test"
+
+on: [push, pull_request]
+
+jobs:
+
+  build-and-test:
+
+    name: "Build and test"
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: "Checkout the repository"
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: "Set up Node"
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: "Install dependancies"
+        run: |
+          npm install
+
+      - name: "Build project"
+        run: |
+          npx grunt
+
+      - name: "Lint and coding style check with jshint and jscs"
+        run: |
+          npx grunt lint
+
+      - name: "Test with mocha"
+        run: |
+          npx grunt test
+

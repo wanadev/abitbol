@@ -52,6 +52,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-uglify");
 
     grunt.registerTask("default", ["browserify:dist", "uglify:dist"]);
-    grunt.registerTask("test", ["jshint", "jscs", "mochaTest"]);
+    grunt.registerTask("lint", ["jshint", "jscs"]);
+    grunt.registerTask("test", ["mochaTest"]);
 
 };
