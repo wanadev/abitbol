@@ -1,11 +1,9 @@
 # Abitbol
 
-[![Build Status](https://travis-ci.org/wanadev/abitbol.svg?branch=master)](https://travis-ci.org/wanadev/abitbol)
+[![Lint and Test](https://github.com/wanadev/abitbol/actions/workflows/node-ci.yml/badge.svg)](https://github.com/wanadev/abitbol/actions/workflows/node-ci.yml)
 [![NPM Version](http://img.shields.io/npm/v/abitbol.svg?style=flat)](https://www.npmjs.com/package/abitbol)
 [![License](http://img.shields.io/npm/l/abitbol.svg?style=flat)](https://github.com/wanadev/abitbol/blob/master/LICENSE)
-![Dependencies](https://img.shields.io/david/wanadev/abitbol.svg?maxAge=2592000)
-![Dev Dependencies](https://img.shields.io/david/dev/wanadev/abitbol.svg?maxAge=2592000)
-[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/abitbol.svg)](https://greenkeeper.io/)
+[![Discord](https://img.shields.io/badge/chat-Discord-8c9eff?logo=discord&logoColor=ffffff)](https://discord.gg/BmUkEdMuFp)
 
 
 Abitbol is a small Javascript library that provides consistent/easy to use
