@@ -1,5 +1,29 @@
 export = Class;
-declare function Class(): void;
+
+declare interface AbitbolClass<T> {
+    new(params?: T): AbitbolObject<T>,
+    $map: {
+        attributes: {};
+        methods: {};
+        computedProperties: {};
+    }
+    $extend<U>(properties: U): AbitbolClass<U & T>;
+}
+
+type ComputedType<Type> = {
+    [Property in keyof Type]: Type[Property]
+}
+
+type AbitbolObject<Type> = ComputedType<Type> & {
+    $class: AbitbolClass<Type>,
+    $map: {
+        attributes: {},
+        methods: {},
+        computedProperties: {},
+    },
+    $data: {},
+}
+
 declare namespace Class {
     function $class(): void;
     namespace $class {
@@ -9,4 +33,6 @@ declare namespace Class {
             const computedProperties: {};
         }
     }
+
+    function $extend<T>(properties: T): AbitbolClass<T>;
 }
