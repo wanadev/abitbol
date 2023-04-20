@@ -4,6 +4,7 @@
   "description": "The classiest javascript class library of the world",
   "homepage": "https://wanadev.github.io/abitbol/",
   "main": "src/abitbol.js",
+  "types": "types/abitbol.d.ts",
   "scripts": {
     "test": "grunt test"
   },
@@ -28,7 +29,8 @@
     "grunt-jscs": "^3.0.1",
     "grunt-mocha-test": "^0.13.3",
     "jscs-preset-loris": "^1.2.0",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "typescript": "^5.0.2"
   },
   "enlightme": {
     "appName": "Abitbol"
