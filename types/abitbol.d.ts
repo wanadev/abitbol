@@ -1,24 +1,14 @@
 export = Class
 
-declare interface AbitbolClass<T> {
-    new(params?: any): AbitbolObject<T>,
-    $map: {
-        attributes: {}
-        methods: {}
-        computedProperties: {}
-    }
-    $extend<U>(properties: U): AbitbolClass<U & T>
-}
-
 type PropName<T extends string> = Uncapitalize<T>
 
 type GetterPropNameFromGet<T extends string> = T extends `get${infer Prefix}` ? PropName<Prefix> : never;
 type GetterPropNameFromSet<T extends string> = T extends `is${infer Prefix}` ? PropName<Prefix> : never;
 type GetterPropName<T extends string> = GetterPropNameFromGet<T> | GetterPropNameFromSet<T>
-type GetterValue<T> = T extends (...args: any[]) => infer R ? R : never;
+type GetterValue<T> = T extends (...args: any[]) => infer R ? R : any;
 
 type ObjectDescriptor<Type> = {
-    [Property in keyof Type]: Type[Property]
+    [Property in keyof Type]: Type[Property];
 }
 
 type StringKey<Type> = keyof Type extends string ? keyof Type : never;
@@ -28,6 +18,24 @@ type ComputedProps<Type> = {
 }
 
 type AbitbolComputedProps<Type> = ObjectDescriptor<Type> & ComputedProps<Type>
+type ClassDescriptor = {
+    [x: string]: any,
+    __include__: any[],
+    __classvars__: any,
+    __init__(...args: any[]): void,
+    __preBuild__(properties, NewClass, SuperClass): void,
+    __postBuild__(properties, NewClass, SuperClass): void,
+}
+
+declare interface AbitbolClass<T> {
+    new(params?: any): AbitbolObject<T>,
+    $map: {
+        attributes: {}
+        methods: {}
+        computedProperties: {}
+    }
+    $extend<ClassDescriptor>(properties: ClassDescriptor): AbitbolClass<ClassDescriptor & T>
+}
 
 declare type AbitbolObject<Type> = AbitbolComputedProps<Type> & {
     $class: AbitbolClass<Type>,
@@ -36,7 +44,10 @@ declare type AbitbolObject<Type> = AbitbolComputedProps<Type> & {
         methods: {},
         computedProperties: {},
     },
-    $data: {},
+    $data: any,
+    $super(...args): any,
+    $name: string,
+    $computedPropertyName: string,
 }
 
 declare namespace Class {
