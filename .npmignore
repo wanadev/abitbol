@@ -1,9 +1,11 @@
-.travis.yml
-test
+/test/
+/dist/
+/examples/
+/doc/
+/doc.generated/
+/.github/
 Gruntfile.js
+RELEASE.rst
 .jscsrc
 .jshintrc
-dist
-examples
-doc
-doc.generated
+
