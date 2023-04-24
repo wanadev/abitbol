@@ -8,7 +8,7 @@ menuOrder: 0
 classes for Node.js and web browsers. It is heavily inspired by  Armin
 Ronacher's [Classy][] library, but extends its possibilities.
 
-![George Abitbol](http://pix.toile-libre.org/upload/original/1439302256.png)
+![George Abitbol](./images/george-abitbol.jpg)
 
 > The classiest javascript class library of the world<br />
 > -- George Abitbol

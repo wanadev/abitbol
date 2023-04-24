@@ -41,7 +41,7 @@ var Vehicle = Class.$extend({
 });
 ```
 
-![George Abitbol](http://pix.toile-libre.org/upload/original/1439302256.png)
+![George Abitbol](./doc/images/george-abitbol.jpg)
 
 > The classiest javascript class library of the world<br />
 > -- George Abitbol
