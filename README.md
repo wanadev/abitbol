@@ -47,29 +47,111 @@ var Vehicle = Class.$extend({
 > -- George Abitbol
 
 
+## Install
+
+To install Abitbol run the following command:
+
+    npm install abitbol
+
+
 ## Documentation
 
 * https://wanadev.github.io/abitbol/
 
 
+## Contributing
+
+### Questions
+
+If you have any question, you can:
+
+* [Open an issue on GitHub][gh-issue]
+* [Ask on discord][discord]
+
+### Bugs
+
+If you found a bug, please [open an issue on Github][gh-issue] with as much information as possible.
+
+### Pull Requests
+
+Please consider [filing a bug][gh-issue] before starting to work on a new feature. This will allow us to discuss the best way to do it. This is of course not necessary if you just want to fix some typo or small errors in the code.
+
+### Coding Style / Lint
+
+To check coding style, run the follwoing command:
+
+    npx grunt lint
+
+### Tests
+
+Tu run tests, use the following command:
+
+    npx grunt test
+
+### Build For Browsers
+
+To generate browser version of the lib (files in the `dist/` folder), run:
+
+    npx grunt
+
+
+[gh-issue]: https://github.com/wanadev/abitbol/issues
+[discord]: https://discord.gg/BmUkEdMuFp
+
+
 ## Changelog
 
-* **2.1.0:** Added TypeScript type definitions (@jbghoul, #26)
-* **2.0.1:** Optimization of special properties detection (@jbghoul, #23)
-* **2.0.0:** New pre/post build hooks that allows to implement new patterns on
-  Abitbol Classes.
-* **1.2.0:** Support static method/properties in mixin
-* **1.1.1**: Updates doc and README
-* **1.1.0**: Adds ES2015 support in the annotation parser
-* **1.0.4**: Updates dependencies
-* **1.0.3**: Allows computed properties' accessors and mutators to be
-  monkey-patched.
-* **1.0.2**: Do not wrap methods when it is not necessary.
-* **1.0.1**: Fixes context issue with nested method calls.
-* **1.0.0**: Computed properties generated from accessors and mutators
-  (get/set), annotations, proper `this`.
-* **0.1.0**: Equivalent to Classy (except `Class.$classyVersion`,
-  `Class.$withData()`, `Class.$noConflict()` that are not implemented).
+* **[NEXT]** (changes on master that have not been released yet):
+
+    * Nothing yet ;)
+
+* **v2.1.0:**
+
+    * Added TypeScript type definitions (@jbghoul, #26)
+
+* **v2.0.1:**
+
+    * Optimization of special properties detection (@jbghoul, #23)
+
+* **v2.0.0:**
+
+    * New pre/post build hooks that allows to implement new patterns on Abitbol Classes.
+
+* **v1.2.0:**
+
+    * Support static method/properties in mixin
+
+* **v1.1.1**:
+
+    * Updates doc and README
+
+* **v1.1.0**:
+
+    * Adds ES2015 support in the annotation parser
+
+* **v1.0.4**:
+
+    * Updates dependencies
+
+* **v1.0.3**:
+
+    * Allows computed properties' accessors and mutators to be monkey-patched.
+
+* **v1.0.2**:
+
+    * Do not wrap methods when it is not necessary.
+
+* **v1.0.1**:
+
+    * Fixes context issue with nested method calls.
+
+* **v1.0.0**:
+
+    * Computed properties generated from accessors and mutators (get/set), annotations, proper `this`.
+
+* **v0.1.0**:
+
+    * Equivalent to Classy (except `Class.$classyVersion`, `Class.$withData()`, `Class.$noConflict()` that are not implemented).
 
 
 [Classy]: https://github.com/mitsuhiko/classy
