@@ -25,7 +25,7 @@
     "grunt-browserify": "^5.3.0",
     "grunt-cli": "^1.4.3",
     "grunt-contrib-jshint": "^2.1.0",
-    "grunt-contrib-uglify": "^4.0.1",
+    "grunt-contrib-uglify": "^5.2.2",
     "grunt-jscs": "^3.0.1",
     "grunt-mocha-test": "^0.13.3",
     "jscs-preset-loris": "^1.2.0",
