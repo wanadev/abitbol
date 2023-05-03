@@ -19,7 +19,7 @@
   "author": "Wanadev <http://www.wanadev.fr/>",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "enlightme": "^0.1.1",
+    "enlightme": "^0.2.0",
     "expect.js": "^0.3.1",
     "grunt": "^1.0.4",
     "grunt-browserify": "^5.3.0",
