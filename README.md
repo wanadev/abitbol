@@ -105,6 +105,10 @@ To generate browser version of the lib (files in the `dist/` folder), run:
 
     * Nothing yet ;)
 
+* **v2.1.1:**
+
+    * Updated dev dependencies (@jbghoul, #34)
+
 * **v2.1.0:**
 
     * Added TypeScript type definitions (@jbghoul, #26)
