@@ -10,13 +10,17 @@ on:
       - .jshintrc
       - .jscsrc
       - .github/workflows/node-ci.yml
+      - package.json
   pull_request:
     paths:
       - src/**
+      - types/**
       - test/**
       - Gruntfile.js
       - .jshintrc
       - .jscsrc
+      - .github/workflows/node-ci.yml
+      - package.json
 
 jobs:
 
