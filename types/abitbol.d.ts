@@ -91,8 +91,7 @@ type AttributesPropertiesKeys<P> = ExtractAttributesPropertiesKeys<P>;
 type MethodsPropertiesKeys<P> = ExtractMethodsPropertiesKeys<P>;
 
 type SuperVariables<P> = {
-    // @ts-expect-error A bit hacky but we really need the Class and not the instance here
-    $class: this,
+    $class: any,
     $data: Record<string, any>,
     $map: {
         attributes: {
@@ -153,6 +152,14 @@ export class AbitbolClass {
         this: I,
         properties?: PrivateInstance<E, I, PI>
     ): ExtendedAbitbolClass<E, I, SP, P, S, PI>
+
+    static $class: any;
+
+    static $map: {
+        attributes: { },
+        computedProperties: { },
+        methods: { },
+    }
 }
 
 export default AbitbolClass;
