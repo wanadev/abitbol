@@ -49,13 +49,17 @@ type GetSetterMethodName<K extends string, P> = `set${Capitalize<K>}`extends key
 
 type IsGetterOrSetterIdentifier<K> = K extends `get${string}` | `is${string}` | `has${string}` | `set${string}` ? K : never;
 
+type MayBeSetter<T> = T extends undefined ? {} :  { set: T };
+type MayBeGetter<T> = T extends undefined ? {} :  { get: T };
+
 // #endregion
 
 // #region Mixin
 
 type UnionToIntersection<U> =
-    (U extends any ? (k: U) => void : never) extends
-    ((k: infer I) => void) ? I : never;
+    (U extends any ? (k: U) => void : never) extends ((k: infer I) => void)
+    ? I
+    : never;
 
 type UnionOfArrayElements<T> = T extends (infer U)[] ? U : never;
 
@@ -98,11 +102,10 @@ type SuperVariables<P> = {
             [K in AttributesPropertiesKeys<P>]: true;
         },
         computedProperties: {
-            [K in keyof GetterAndSetter<P> & string] : {
-                get: GetGetterMethodName<K, P>,
-                set: GetSetterMethodName<K, P>,
-                annotations: Record<string, any>,
-            }
+            [K in keyof GetterAndSetter<P> & string]:
+                & MayBeGetter<GetGetterMethodName<K, P>>
+                & MayBeSetter<GetSetterMethodName<K, P>>
+                & { annotations: Record<string, any> }
         },
         methods: {
             [K in MethodsPropertiesKeys<P>]: {
