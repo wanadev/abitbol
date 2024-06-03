@@ -105,6 +105,11 @@ To generate browser version of the lib (files in the `dist/` folder), run:
 
     * Nothing yet ;)
 
+* **v2.1.2:**
+
+    * feat: Improved TypeScript type definition for Abitbol classes (@Pduhard, #44)
+    * misc: Updated dev dependencies (@dependabot)
+
 * **v2.1.1:**
 
     * Updated dev dependencies (@jbghoul, #34)
